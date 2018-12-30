@@ -1,7 +1,7 @@
-﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Models;
+﻿using ShoppingApp.Data.Infrastructure;
+using ShoppingApp.Model.Models;
 
-namespace TeduShop.Data.Repositories
+namespace ShoppingApp.Data.Repositories
 {
     public interface ISupportOnlineRepository : IRepository<SupportOnline>
     {

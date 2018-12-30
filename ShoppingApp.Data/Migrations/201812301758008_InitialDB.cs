@@ -82,7 +82,7 @@ namespace ShoppingApp.Data.Migrations
                         Alias = c.String(nullable: false, maxLength: 256),
                         CategoryID = c.Int(nullable: false),
                         Image = c.String(maxLength: 256),
-                        MoreImages = c.String(storeType: "xml"),
+                        MoreImages = c.String(maxLength: 8000, unicode: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PromotionPrice = c.Decimal(precision: 18, scale: 2),
                         Warranty = c.Int(),

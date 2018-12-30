@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Models;
+using ShoppingApp.Data.Infrastructure;
+using ShoppingApp.Model.Models;
 
-namespace TeduShop.Data.Repositories
+namespace ShoppingApp.Data.Repositories
 {
     public interface IMenuGroupRepository : IRepository<MenuGroup>
     {
