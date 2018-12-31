@@ -8,7 +8,7 @@ using ShoppingApp.Model.Models;
 
 namespace ShoppingApp.Data.Repositories
 {
-  public interface IProductRepository
+  public interface IProductRepository:IRepository<Product>
   {
 
   }

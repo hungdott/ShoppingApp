@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ShoppingApp.Model.Abstract;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ShoppingApp.Model.Models
 {
@@ -37,5 +39,6 @@ namespace ShoppingApp.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }
+        public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }

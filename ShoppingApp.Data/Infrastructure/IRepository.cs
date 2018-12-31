@@ -15,6 +15,7 @@ namespace ShoppingApp.Data.Infrastructure
     void Update(T entity);
     //marks an entity to be removed
     void Delete(T entity);
+    void Delete(int id);
     //delete multiple records
     void DeleteMulti(Expression<Func<T, bool>> where);
     //get an entity by int id
