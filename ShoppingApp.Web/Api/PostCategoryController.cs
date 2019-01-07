@@ -15,7 +15,7 @@ namespace ShoppingApp.Web.Api
   {
     IPostCategoryService _postCategoryService;
 
-    public PostCategoryController(IErrorService errorService,IPostCategoryService postCategoryService) :base(errorService)
+    public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
     {
       this._postCategoryService = postCategoryService;
     }
@@ -24,21 +24,15 @@ namespace ShoppingApp.Web.Api
     {
       return CreateHttpResponseMessage(request, () =>
       {
-        HttpResponseMessage response = null;
-        if (ModelState.IsValid)
-        {
-          response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        }
-        else
-        {
-          var listCategory = _postCategoryService.GetAll();
 
-          response = request.CreateResponse(HttpStatusCode.OK, listCategory);
-        }
+        var listCategory = _postCategoryService.GetAll();
+
+        HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+
         return response;
       });
     }
-    public HttpResponseMessage Post(HttpRequestMessage request,PostCategory postCategiry)
+    public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategiry)
     {
       return CreateHttpResponseMessage(request, () =>
       {
@@ -67,7 +61,7 @@ namespace ShoppingApp.Web.Api
         }
         else
         {
-           _postCategoryService.Update(postCategiry);
+          _postCategoryService.Update(postCategiry);
           _postCategoryService.Save();
           response = request.CreateResponse(HttpStatusCode.OK);
         }
