@@ -1,12 +1,15 @@
-﻿using ShoppingApp.Model.Models;
+﻿using AutoMapper;
+using ShoppingApp.Model.Models;
 using ShoppingApp.Service;
 using ShoppingApp.Web.Infrastructure.Core;
+using ShoppingApp.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ShoppingApp.Web.Infrastructure.Extensions;
 
 namespace ShoppingApp.Web.Api
 {
@@ -26,13 +29,14 @@ namespace ShoppingApp.Web.Api
       {
 
         var listCategory = _postCategoryService.GetAll();
-
-        HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
+        var listPostCategoryVm = Mapper.Map < List < PostCategoryViewModel >>(listCategory);
+        HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
         return response;
       });
     }
-    public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategiry)
+    [Route("add")]
+    public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategiryVm)
     {
       return CreateHttpResponseMessage(request, () =>
       {
@@ -43,14 +47,17 @@ namespace ShoppingApp.Web.Api
         }
         else
         {
-          var category = _postCategoryService.Add(postCategiry);
+          PostCategory newpostCategory = new PostCategory();
+          newpostCategory.UpdatePostCategory(postCategiryVm);
+          var category = _postCategoryService.Add(newpostCategory);
           _postCategoryService.Save();
           response = request.CreateResponse(HttpStatusCode.Created, category);
         }
         return response;
       });
     }
-    public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategiry)
+    [Route("update")]
+    public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
     {
       return CreateHttpResponseMessage(request, () =>
       {
@@ -61,7 +68,9 @@ namespace ShoppingApp.Web.Api
         }
         else
         {
-          _postCategoryService.Update(postCategiry);
+          var postCategoryDb = _postCategoryService.GetById(postCategoryVm.ID);
+          postCategoryDb.UpdatePostCategory(postCategoryVm);
+          _postCategoryService.Update(postCategoryDb);
           _postCategoryService.Save();
           response = request.CreateResponse(HttpStatusCode.OK);
         }
