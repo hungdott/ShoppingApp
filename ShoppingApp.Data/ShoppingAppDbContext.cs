@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 using System.Data.Entity;
 using ShoppingApp.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ShoppingApp.Data
 {
-  public class ShoppingAppDbContext : DbContext
+  public class ShoppingAppDbContext : IdentityDbContext<ApplicationUser>
   {
     public ShoppingAppDbContext() : base("ShoppingAppConnection")
     {
@@ -34,9 +35,14 @@ namespace ShoppingApp.Data
     public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
     public DbSet<Error> Errors { set; get; }
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    public static ShoppingAppDbContext Create()
     {
-     
+      return new ShoppingAppDbContext();
+    }
+    protected override void OnModelCreating(DbModelBuilder builder)
+    {
+      builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId ,i.RoleId});
+      builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
     }
   }
 }
