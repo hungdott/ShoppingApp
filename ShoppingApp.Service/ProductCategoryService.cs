@@ -20,40 +20,52 @@ namespace ShoppingApp.Service
 
       IEnumerable<ProductCategory> GetAll();
 
+      IEnumerable<ProductCategory> GetAll(string keyword);
+
+
       IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
       ProductCategory GetById(int id);
       void Save();
     }
 
-    public class ProductCategoryService : IProductCategoryService
+  public class ProductCategoryService : IProductCategoryService
+  {
+    private IProductCategoryRepository _ProductCategoryRepository;
+    private IUnitOfWork _unitOfWork;
+
+    public ProductCategoryService(IProductCategoryRepository ProductCategoryRepository, IUnitOfWork unitOfWork)
     {
-      private IProductCategoryRepository _ProductCategoryRepository;
-      private IUnitOfWork _unitOfWork;
+      this._ProductCategoryRepository = ProductCategoryRepository;
+      this._unitOfWork = unitOfWork;
+    }
 
-      public ProductCategoryService(IProductCategoryRepository ProductCategoryRepository, IUnitOfWork unitOfWork)
-      {
-        this._ProductCategoryRepository = ProductCategoryRepository;
-        this._unitOfWork = unitOfWork;
-      }
+    public ProductCategory Add(ProductCategory ProductCategory)
+    {
+      return _ProductCategoryRepository.Add(ProductCategory);
 
-      public ProductCategory Add(ProductCategory ProductCategory)
-      {
-        return _ProductCategoryRepository.Add(ProductCategory);
+    }
 
-      }
+    public ProductCategory Delete(int id)
+    {
+      return _ProductCategoryRepository.Delete(id);
+    }
 
-      public ProductCategory Delete(int id)
-      {
-        return _ProductCategoryRepository.Delete(id);
-      }
+    public IEnumerable<ProductCategory> GetAll()
+    {
+      return _ProductCategoryRepository.GetAll();
+    }
 
-      public IEnumerable<ProductCategory> GetAll()
-      {
+    public IEnumerable<ProductCategory> GetAll(string keyword)
+    {
+      if(!string.IsNullOrEmpty(keyword))
+        return _ProductCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+      else
         return _ProductCategoryRepository.GetAll();
-      }
 
-      public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
+    }
+
+    public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
       {
         return _ProductCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
       }

@@ -21,7 +21,19 @@
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
         </div>
+ 
         <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-click="search()" type="button">Tìm kiếm</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+            </div>  
+            <br /> 
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -49,7 +61,13 @@
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
-                        
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    Tổng số bản ghi: {{totalCount}}
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
 
                 </div>

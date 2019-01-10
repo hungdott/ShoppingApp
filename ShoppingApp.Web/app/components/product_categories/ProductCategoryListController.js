@@ -8,12 +8,18 @@
         $scope.pagesCount = 0
 
         $scope.getProductCategories = getProductCategories
+        $scope.keyword = ''
+        $scope.search = search
+        function search() {
+            getProductCategories()
+        }
 
         function getProductCategories(page) {
             page = page || 0
 
             var config = {
                 params: {
+                    keyword:$scope.keyword,
                     page: page,
                     pageSize: 2
                 }
@@ -23,7 +29,6 @@
                 $scope.page = result.data.Page
                 $scope.pagesCount = result.data.TotalPages
                 $scope.totalCount = result.data.TotalCount
-                console.log('sdfdsf')
             }, function () {
                 console.log('load productCategory failed.')
             })
