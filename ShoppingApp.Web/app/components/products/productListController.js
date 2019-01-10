@@ -4,4 +4,4 @@
     function productListController() {
 
     }
-})(angular.module('shoppingapp.products'))
+})(angular.module('shoppingapp.product_categories'))

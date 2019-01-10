@@ -32,6 +32,6 @@ namespace ShoppingApp.Web.Models
     public string MetaDescription { get; set; }
     public bool Status { get; set; }
 
-    public virtual IEnumerable<PostViewModel> Posts { set; get; }
+    public virtual IEnumerable<PostViewModel> Post { set; get; }
   }
 }
