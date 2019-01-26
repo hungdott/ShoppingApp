@@ -1,16 +1,16 @@
 ﻿/// <reference path="D:\asp.net\AppShopASP\Git\ShoppingApp.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController)
-    productCategoryListController.$inject = ['$scope','apiService','notificationService']
-    function productCategoryListController($scope, apiService, notificationService) {
+    productCategoryListController.$inject = ['$scope','apiService','notificationService','$state']
+    function productCategoryListController($scope, apiService, notificationService,$state) {
         $scope.productCategories = []
         $scope.page = 0
         $scope.pagesCount = 0
-
         $scope.getProductCategories = getProductCategories
         $scope.keyword = ''
         $scope.search = search
-        
+  
+ 
 
         function search() {
             getProductCategories()
@@ -46,7 +46,9 @@
             }, function () {
                 console.log('load productCategory failed.')
             })
-        }
+        }                        
+              
         $scope.getProductCategories()
+        
     }
 })(angular.module('shoppingapp.product_categories'))
