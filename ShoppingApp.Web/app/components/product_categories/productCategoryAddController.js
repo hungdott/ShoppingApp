@@ -1,8 +1,8 @@
 ﻿/// <reference path="D:\asp.net\AppShopASP\Git\ShoppingApp.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryAddController', productCategoryAddController)
-    productCategoryAddController.$inject = ['apiService', '$scope','notificationService','$state']
-    function productCategoryAddController(apiService, $scope, notificationService,$state) {
+    productCategoryAddController.$inject = ['apiService', '$scope','notificationService','$state','commonService']
+    function productCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.productCategory = {
 
             CreatedDate: new Date(),
@@ -10,6 +10,10 @@
             HomeFlag:true
         }
         $scope.AddProductCategory = AddProductCategory
+        $scope.GetSeoTittle = GetSeoTittle
+        function GetSeoTittle() {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name)
+        }
         function AddProductCategory() {
             apiService.post('/api/productcategory/create', $scope.productCategory, function (result) {
                 notificationService.displaySuccess('da them moi thanh cong '+result.data.Name)
