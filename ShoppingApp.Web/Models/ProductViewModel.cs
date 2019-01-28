@@ -1,6 +1,7 @@
 ﻿using ShoppingApp.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,8 +12,10 @@ namespace ShoppingApp.Web.Models
 
     public int ID { set; get; }
 
+    [Required(ErrorMessage ="moi dien vao truong nay")]
     public string Name { set; get; }
 
+    [Required(ErrorMessage ="moi dien vao truong nay")]
     public string Alias { set; get; }
 
     public int CategoryID { set; get; }

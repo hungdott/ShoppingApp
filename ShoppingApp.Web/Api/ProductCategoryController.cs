@@ -132,5 +132,28 @@ namespace ShoppingApp.Web.Api
         return response;
       });
     }
+    [Route("delete")]
+    [HttpDelete]
+    public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+    {
+      return CreateHttpResponseMessage(request, () =>
+      {
+        HttpResponseMessage response = null;
+        if (ModelState.IsValid == false)
+        {
+          response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+        }
+        else
+        {
+
+         var oldProduct= _productCategoryService.Delete(id);
+          _productCategoryService.Save();
+          var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProduct);
+          response = request.CreateResponse(HttpStatusCode.OK, responseData);
+        }
+
+        return response;
+      });
+    }
   }
 }

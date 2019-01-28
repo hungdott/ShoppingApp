@@ -11,9 +11,9 @@ namespace ShoppingApp.Web.Models
   {
     
     public int ID { set; get; }
-    [Required]
+    [Required(ErrorMessage ="moi dien vao truong nay")]
     public string Name { set; get; }
-    [Required]
+    [Required(ErrorMessage ="moi dien vao truong nay")]
     public string Alias { set; get; }
 
     public string Description { set; get; }

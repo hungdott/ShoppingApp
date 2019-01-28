@@ -1,22 +1,21 @@
 ﻿/// <reference path="D:\asp.net\AppShopASP\Git\ShoppingApp.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController)
-    productCategoryListController.$inject = ['$scope','apiService','notificationService','$state']
-    function productCategoryListController($scope, apiService, notificationService,$state) {
+    productCategoryListController.$inject = ['$scope','apiService','notificationService','$state','$ngBootbox']
+    function productCategoryListController($scope, apiService, notificationService, $state, $ngBootbox) {
         $scope.productCategories = []
         $scope.page = 0
         $scope.pagesCount = 0
         $scope.getProductCategories = getProductCategories
         $scope.keyword = ''
         $scope.search = search
-  
+        $scope.deleteProductCategory = deleteProductCategory
  
 
         function search() {
             getProductCategories()
         }
 
-       
         function getProductCategories(page) {
             page = page || 0
 
@@ -46,9 +45,26 @@
             }, function () {
                 console.log('load productCategory failed.')
             })
-        }                        
-              
+        }
+
         $scope.getProductCategories()
+        function deleteProductCategory(id) {
+            $ngBootbox.confirm('ban co chac muon xoa').then(function () {
+                var config = {
+                    params: {
+                        id: id
+                    }
+                }
+                apiService.del('/api/productcategory/delete', config, function (result) {
+                    notificationService.displaySuccess('xoa thanh cong ban ghi ' + result.data.Name)
+                    $scope.getProductCategories()   
+                }, function (err) {
+                    notificationService.displayError('xoa khong thanh cong')
+                })
+
+            })
+        }
+              
         
     }
 })(angular.module('shoppingapp.product_categories'))
