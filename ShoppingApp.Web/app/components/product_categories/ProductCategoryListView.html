@@ -32,8 +32,9 @@
                         </span>
                     </div><!-- /input-group -->
                 </div>
-                <div class="col-md-6" ui-sref="add_product_category" typeof="button">
-                    <button class="btn btn-success"  type="button">them moi</button>
+                <div class="col-md-6"  typeof="button">
+                    <button class="btn btn-success" ui-sref="add_product_category" type="button">them moi</button>
+                    <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete"  disabled type="button">xoa</button>
                 </div>
             </div>  
             <br /> 
@@ -41,6 +42,7 @@
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
+                            <th><label><input name="all" type="checkbox" ng-click="selectAll()"  /></label></th>
                             <th style="width: 5%">ID</th>
                             <th style="width: 55%">Tên danh mục</th>
                             <th style="width: 20%">Ngày tạo</th>
@@ -49,6 +51,7 @@
                         </tr>
                     
                         <tr ng-repeat="item in productCategories">
+                            <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
                             <td>

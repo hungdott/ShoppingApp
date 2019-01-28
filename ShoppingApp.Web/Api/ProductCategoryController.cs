@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ShoppingApp.Web.Infrastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace ShoppingApp.Web.Api
 {
@@ -150,6 +151,32 @@ namespace ShoppingApp.Web.Api
           _productCategoryService.Save();
           var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProduct);
           response = request.CreateResponse(HttpStatusCode.OK, responseData);
+        }
+
+        return response;
+      });
+    }
+    [Route("deletemulti")]
+    [HttpDelete]
+    public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategory)
+    {
+      return CreateHttpResponseMessage(request, () =>
+      {
+        HttpResponseMessage response = null;
+        if (ModelState.IsValid == false)
+        {
+          response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+        }
+        else
+        {
+          var listProductCategory = new JavaScriptSerializer().Deserialize < List < int >> (checkedProductCategory);
+          foreach (var item in listProductCategory)
+          {
+              _productCategoryService.Delete(item);
+          }
+          _productCategoryService.Save();
+          
+          response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
         }
 
         return response;
