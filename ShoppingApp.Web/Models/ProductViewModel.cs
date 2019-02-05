@@ -35,7 +35,19 @@ namespace ShoppingApp.Web.Models
     public bool? HomeFlag { set; get; }
     public bool? HotFlag { set; get; }
     public int? ViewCount { set; get; }
+    public DateTime? CreatedDate { set; get; }
 
+    public string CreatedBy { set; get; }
+    public DateTime? UpdatedDate { set; get; }
+
+    public string UpdatedBy { set; get; }
+
+    public string MetaKeyword { get; set; }
+
+    public string MetaDescription { get; set; }
+
+    [Required]
+    public bool Status { get; set; }
     public virtual ProductCategoryViewModel ProductCategory { set; get; }
   }
 }
