@@ -46,8 +46,8 @@ namespace ShoppingApp.Web.Models
 
     public string MetaDescription { get; set; }
 
-    [Required]
     public bool Status { get; set; }
+    public string Tags { get; set; }
     public virtual ProductCategoryViewModel ProductCategory { set; get; }
   }
 }

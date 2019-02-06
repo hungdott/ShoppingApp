@@ -4,7 +4,6 @@
     productAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService']
     function productAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.product = {
-
             CreatedDate: new Date(),
             Status: true,
             HomeFlag: true,
@@ -23,7 +22,7 @@
         function AddProduct() {
             apiService.post('/api/product/create', $scope.product, function (result) {
                 notificationService.displaySuccess('da them moi thanh cong ' + result.data.Name)
-                $state.go('product_categories')
+                $state.go('products')
             }, function (err) {
                 notificationService.displayError('da them moi khong thanh cong')
                 console.log('create failed.')
