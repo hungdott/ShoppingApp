@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace ShoppingApp.Web.Api
 {
   [RoutePrefix("api/product")]
+  [Authorize]
   public class ProductController : ApiControllerBase
   {
     #region innitialize
@@ -83,6 +84,7 @@ namespace ShoppingApp.Web.Api
           var newProduct = new Product();
           newProduct.UpdateProduct(productVM);
           newProduct.CreatedDate = DateTime.Now;
+          newProduct.CreatedBy = User.Identity.Name;
           _productService.Add(newProduct);
           _productService.Save();
           var responseData = Mapper.Map<Product, ProductViewModel>(newProduct);

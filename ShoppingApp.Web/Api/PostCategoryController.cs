@@ -14,6 +14,7 @@ using ShoppingApp.Web.Infrastructure.Extensions;
 namespace ShoppingApp.Web.Api
 {
   [RoutePrefix("api/postcategory")]
+  [Authorize]
   public class PostCategoryController : ApiControllerBase
   {
     IPostCategoryService _postCategoryService;
