@@ -126,6 +126,7 @@ namespace ShoppingApp.Web.Api
           var dbProduct = _productService.GetById(productVM.ID);
           dbProduct.UpdateProduct(productVM);
           dbProduct.UpdatedDate = DateTime.Now;
+          dbProduct.UpdatedBy = User.Identity.Name;
           _productService.Update(dbProduct);
           _productService.Save();
           var responseData = Mapper.Map<Product, ProductViewModel>(dbProduct);
