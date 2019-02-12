@@ -25,6 +25,7 @@ namespace ShoppingApp.Web.Models
     public string Image { set; get; }
 
     public bool? HomeFlag { set; get; }
+    public virtual IEnumerable<PostViewModel> Posts { set; get; }
     public DateTime? CreatedDate { set; get; }
 
     public string CreatedBy { set; get; }
@@ -36,9 +37,8 @@ namespace ShoppingApp.Web.Models
 
     public string MetaDescription { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Yêu cầu nhập trạng thái")]
     public bool Status { get; set; }
-    public virtual IEnumerable<ProductViewModel> Products { set; get; }
 
   }
 }

@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201902061417388_AddTagsField.Designer.cs">
       <DependentUpon>201902061417388_AddTagsField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902121400058_AddContentToSlides.cs" />
+    <Compile Include="Migrations\201902121400058_AddContentToSlides.Designer.cs">
+      <DependentUpon>201902121400058_AddContentToSlides.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121650384_addContent.cs" />
+    <Compile Include="Migrations\201902121650384_addContent.Designer.cs">
+      <DependentUpon>201902121650384_addContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -144,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902061417388_AddTagsField.resx">
       <DependentUpon>201902061417388_AddTagsField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121400058_AddContentToSlides.resx">
+      <DependentUpon>201902121400058_AddContentToSlides.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121650384_addContent.resx">
+      <DependentUpon>201902121650384_addContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

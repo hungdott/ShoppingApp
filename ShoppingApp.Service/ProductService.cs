@@ -2,7 +2,9 @@
 using ShoppingApp.Data.Repositories;
 using ShoppingApp.Model.Models;
 using System.Collections.Generic;
+using System.Linq;
 using ShoppingApp.Common;
+using System;
 
 namespace ShoppingApp.Service
 {
@@ -17,6 +19,9 @@ namespace ShoppingApp.Service
     IEnumerable<Product> GetAll();
 
     IEnumerable<Product> GetAll(string keyword);
+    IEnumerable<Product> GetLastest(int top);
+    IEnumerable<Product> GetHotProduct(int top);
+
 
     Product GetById(int id);
 
@@ -118,6 +123,16 @@ namespace ShoppingApp.Service
         }
       }
      
+    }
+
+    public IEnumerable<Product> GetLastest(int top)
+    {
+      return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top);
+    }
+
+    public IEnumerable<Product> GetHotProduct(int top)
+    {
+      return _productRepository.GetMulti(x =>x.Status==true && x.HomeFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
     }
   }
 }
