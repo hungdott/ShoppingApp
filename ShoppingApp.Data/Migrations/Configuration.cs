@@ -8,6 +8,7 @@
   using System.Data.Entity;
   using System.Data.Entity.Migrations;
   using System.Linq;
+  using ShoppingApp.Common;
 
   internal sealed class Configuration : DbMigrationsConfiguration<ShoppingApp.Data.ShoppingAppDbContext>
   {
@@ -54,6 +55,13 @@
       };
       context.ProductCategories.AddRange(listProductCategory);
       context.SaveChanges();
+      }
+    }
+    private void CreateFooter(ShoppingAppDbContext context)
+    {
+      if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId)==0)
+      {
+        string content = "";
       }
     }
   }
