@@ -407,7 +407,9 @@ width: 49%;
 }
 .view-all,a.get-cart{
 	float:right;
+	width: 99%;
 	padding: 0.4em 0.6em;
+	text-align: center;
 	font-size: 1em;
 }
 a.view-all span{

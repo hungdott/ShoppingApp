@@ -64,37 +64,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201812301758008_InitialDB.cs" />
-    <Compile Include="Migrations\201812301758008_InitialDB.Designer.cs">
-      <DependentUpon>201812301758008_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901010726171_InitialDB1.cs" />
-    <Compile Include="Migrations\201901010726171_InitialDB1.Designer.cs">
-      <DependentUpon>201901010726171_InitialDB1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901061555226_AddErrorTable.cs" />
-    <Compile Include="Migrations\201901061555226_AddErrorTable.Designer.cs">
-      <DependentUpon>201901061555226_AddErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901081512260_Intergrated-ASPIdentity.cs" />
-    <Compile Include="Migrations\201901081512260_Intergrated-ASPIdentity.Designer.cs">
-      <DependentUpon>201901081512260_Intergrated-ASPIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901081646528_ChangeKey.cs" />
-    <Compile Include="Migrations\201901081646528_ChangeKey.Designer.cs">
-      <DependentUpon>201901081646528_ChangeKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902061417388_AddTagsField.cs" />
-    <Compile Include="Migrations\201902061417388_AddTagsField.Designer.cs">
-      <DependentUpon>201902061417388_AddTagsField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902121400058_AddContentToSlides.cs" />
-    <Compile Include="Migrations\201902121400058_AddContentToSlides.Designer.cs">
-      <DependentUpon>201902121400058_AddContentToSlides.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902121650384_addContent.cs" />
-    <Compile Include="Migrations\201902121650384_addContent.Designer.cs">
-      <DependentUpon>201902121650384_addContent.cs</DependentUpon>
+    <Compile Include="Migrations\201902151013032_recreate.cs" />
+    <Compile Include="Migrations\201902151013032_recreate.Designer.cs">
+      <DependentUpon>201902151013032_recreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,33 +107,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812301758008_InitialDB.resx">
-      <DependentUpon>201812301758008_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901010726171_InitialDB1.resx">
-      <DependentUpon>201901010726171_InitialDB1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901061555226_AddErrorTable.resx">
-      <DependentUpon>201901061555226_AddErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901081512260_Intergrated-ASPIdentity.resx">
-      <DependentUpon>201901081512260_Intergrated-ASPIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901081646528_ChangeKey.resx">
-      <DependentUpon>201901081646528_ChangeKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902061417388_AddTagsField.resx">
-      <DependentUpon>201902061417388_AddTagsField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121400058_AddContentToSlides.resx">
-      <DependentUpon>201902121400058_AddContentToSlides.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121650384_addContent.resx">
-      <DependentUpon>201902121650384_addContent.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <EmbeddedResource Include="Migrations\201902151013032_recreate.resx">
+      <DependentUpon>201902151013032_recreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,13 +7,13 @@ namespace ShoppingApp.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ChangeKey : IMigrationMetadata
+    public sealed partial class recreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeKey));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(recreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901081646528_ChangeKey"; }
+            get { return "201902151013032_recreate"; }
         }
         
         string IMigrationMetadata.Source
