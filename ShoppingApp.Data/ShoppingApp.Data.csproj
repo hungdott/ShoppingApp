@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201902151013032_recreate.Designer.cs">
       <DependentUpon>201902151013032_recreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902180940381_addAdmin.cs" />
+    <Compile Include="Migrations\201902180940381_addAdmin.Designer.cs">
+      <DependentUpon>201902180940381_addAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902201655295_createSlide.cs" />
+    <Compile Include="Migrations\201902201655295_createSlide.Designer.cs">
+      <DependentUpon>201902201655295_createSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -112,6 +120,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902151013032_recreate.resx">
       <DependentUpon>201902151013032_recreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902180940381_addAdmin.resx">
+      <DependentUpon>201902180940381_addAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902201655295_createSlide.resx">
+      <DependentUpon>201902201655295_createSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
