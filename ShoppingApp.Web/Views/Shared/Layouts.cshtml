@@ -15,6 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
     <script src="/Assets/client/js/jquery.min.js"></script>
@@ -26,17 +27,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!---->
     <div class="container">
         @RenderBody()
-    </div>
-    @RenderSection("homeProducts", required: false)
-
-    <div class="clearfix"> </div>
-    </div>
     @{ Html.RenderAction("Category", "Home");}
-    <div class="clearfix"> </div>
     </div>
 
     <!---->
     @{ Html.RenderAction("Footer", "Home");}
+    <div class="clearfix"> </div>
 
     @RenderSection("footerJS", required: false)
 </body>

@@ -21,7 +21,7 @@ namespace ShoppingApp.Service
     IEnumerable<Product> GetAll(string keyword);
     IEnumerable<Product> GetLastest(int top);
     IEnumerable<Product> GetHotProduct(int top);
-
+    IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
 
     Product GetById(int id);
 
@@ -133,6 +133,13 @@ namespace ShoppingApp.Service
     public IEnumerable<Product> GetHotProduct(int top)
     {
       return _productRepository.GetMulti(x =>x.Status==true && x.HomeFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
+    }
+
+    public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow )
+    {
+      var query = _productRepository.GetMulti(x => x.Status == true && x.CategoryID == categoryId);
+      totalRow = query.Count();
+      return query.Skip((page - 1) * pageSize).Take(pageSize);
     }
   }
 }
