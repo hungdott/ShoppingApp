@@ -300,6 +300,9 @@ ul.cute li{
 	color:#fff;
 	padding:0.6em 0.8em;
 	background:#323A45;
+    position: absolute;
+    bottom: 10%;
+    left: 7%;
 }
  span.on-get:hover{
 	background: #0D3F84;
@@ -404,6 +407,7 @@ width: 49%;
 }
 .latest-product,.dolor-grid{
 	float:left;
+    width: 100%;
 }
 .view-all,a.get-cart{
 	float:right;
@@ -423,11 +427,14 @@ a.view-all{
 	font-size: 1em;
 	color:#000;
 	font-weight:700;
+    float: right;
+    width: auto;
 }
 a.all-product{
 	float:left;
 }
 h5.latest-product{
+    width: auto;
 	margin: 6px 0 0;
 	font-size: 1.3em;
 	color: #000;
@@ -477,8 +484,9 @@ h5.latest-product{
 span.reducedfrom {
 	color: #555;
 	text-decoration: line-through;
-	margin-right: 8%;
+	/*margin-right: 8%;*/
 	font-size:1.1em; 
+    float: right;
 }
 span.actual {
 	font-weight: 500; 

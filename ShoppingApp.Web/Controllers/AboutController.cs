@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace ShoppingApp.Web.Controllers
 {
-
-  public class AccountController : Controller
-  {
-    // GET: Account
-    public ActionResult Login()
+    public class AboutController : Controller
     {
-      return View();
+        // GET: About
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
-  }
 }
