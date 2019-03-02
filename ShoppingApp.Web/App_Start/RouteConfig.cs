@@ -43,8 +43,8 @@ namespace ShoppingApp.Web
 
       routes.MapRoute(
           name: "Product",
-          url: "{alias}.p-{id}.html",
-          defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
+          url: "{alias}.p-{productId}.html",
+          defaults: new { controller = "Product", action = "Detail", productId = UrlParameter.Optional },
           namespaces: new string[] { "ShoppingApp.Web.Controllers" }
       );
 

@@ -76,11 +76,28 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputDis" class="col-sm-2 control-label">số lượng</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="quantity" id="inputDis" ng-model="product.Quantity">
+
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="inputDes" class="col-sm-2 control-label">hình ảnh </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" id="inputDes" name="image" ng-model="product.Image">
                         <span ng-show="frmAddProduct.image.$error.maxlength" class="has-error">chi duoc nhap 256 ki tu </span>
+                        <span ng-show="frmAddProduct.image.$invalid" class="has-error">phai chon hình ảnh</span>
                         <button class="btn btn-success" ng-click="ChooseImage()" type="button">Chon anh</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thêm ảnh</label>
+                    <div class="col-sm-10">
+                        <ul class="list-inline">
+                            <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
+                        </ul>
+                        <button class="btn btn-default" type="button" ng-click="ChooseMoreImage()">Chọn ảnh</button>
                     </div>
                 </div>
                 <div class="form-group">

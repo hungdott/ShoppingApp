@@ -31,6 +31,7 @@
             })
         }
         function UpdateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages)
             apiService.put('/api/product/update', $scope.product, function (result) {
                 notificationService.displaySuccess('da cap nhat thanh cong ' + result.data.Name)
                 $state.go('products')
@@ -53,6 +54,18 @@
                 $scope.product.Image = fileUrl
             }
             finder.popup()
+        }
+        $scope.moreImages = [];
+
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+
+            }
+            finder.popup();
         }
         loadProductCategories()
         loadProductDetail();

@@ -44,6 +44,8 @@ namespace ShoppingApp.Model.Models
         
         public string Tags { set; get; }
 
+        public int Quantity { get; set; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
     }
