@@ -24,6 +24,7 @@
       CreateSlide(context);
       CreatePage(context);
       CreateContactDetail(context);
+      //CreateFeedback(context);
     }
     void CreateUser(ShoppingAppDbContext context)
     {
@@ -136,6 +137,20 @@
         context.SaveChanges();
       }
     }
+    private void CreateFeedback(ShoppingAppDbContext context)
+    {
+      //var contactDetail = new FeedBack()
+      //{
+      //  Name = "shop thời trang",
+
+      //  Email = "hungdo99tt@gmail.com",
+      //  Message = "fdgfsgfdg",
+      //  Status = true
+      //};
+      //context.FeedBacks.Add(contactDetail);
+      //context.SaveChanges();
+    }
+
 
   }
 }

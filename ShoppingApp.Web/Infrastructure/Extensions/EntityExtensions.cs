@@ -9,7 +9,7 @@ namespace ShoppingApp.Web.Infrastructure.Extensions
 {
   public static class EntityExtensions
   {
-    public static void UpdatePostCategory(this PostCategory postCategory,PostCategoryViewModel postCategoryVm)
+    public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryVm)
     {
       postCategory.ID = postCategoryVm.ID;
       postCategory.Name = postCategoryVm.Name;
@@ -25,7 +25,7 @@ namespace ShoppingApp.Web.Infrastructure.Extensions
       postCategory.MetaKeyword = postCategoryVm.MetaKeyword;
       postCategory.MetaDescription = postCategoryVm.MetaDescription;
       postCategory.Status = postCategoryVm.Status;
-  }
+    }
     public static void UpdatePost(this Post post, PostViewModel postVm)
     {
 
@@ -90,6 +90,16 @@ namespace ShoppingApp.Web.Infrastructure.Extensions
       product.Status = productVm.Status;
       product.Tags = productVm.Tags;
       product.Quantity = productVm.Quantity;
+
+    }
+    public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackVm)
+    {
+      feedback.ID = feedbackVm.ID;
+      feedback.Name = feedbackVm.Name;
+      feedback.Email = feedbackVm.Email;
+      feedback.Message = feedbackVm.Message;
+      feedback.CreatedDate = DateTime.Now;
+      feedback.Status = feedbackVm.Status;
 
     }
 
