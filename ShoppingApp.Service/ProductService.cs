@@ -30,6 +30,12 @@ namespace ShoppingApp.Service
     Product GetById(int id);
 
     void Save();
+
+    Tag GetTag(string tagId);
+    IEnumerable<Tag> GetListTagByProductId(int id);
+    void IncreaseView(int id);
+    IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow);
+
   }
 
   public class ProductService : IProductService
@@ -195,6 +201,38 @@ namespace ShoppingApp.Service
       var product = _productRepository.GetSingleById(id);
       return _productRepository.GetMulti(x => x.Status == true && x.ID != id && x.CategoryID == product.CategoryID).Take(top);
 
+    }
+
+    public IEnumerable<Tag> GetListTagByProductId(int id)
+    {
+      return _productTagRepository.GetMulti(x => x.ProductID == id,new string[] { "Tag"}).Select(y=>y.Tag);
+    }
+
+    public void IncreaseView(int id)
+    {
+      var product = _productRepository.GetSingleById(id);
+      if (product.ViewCount.HasValue)
+      {
+        product.ViewCount += 1;
+      }
+      else
+      {
+        product.ViewCount = 1;
+      }
+    }
+
+    public IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow)
+    {
+
+      var model = _productRepository.GetListProductByTag(tagId, page, pageSize, out totalRow);
+      return model;
+
+    }
+
+    public Tag GetTag(string tagId)
+    {
+
+      return _tagRepository.GetSingleByCondition(x=>x.ID== tagId);
     }
   }
 }

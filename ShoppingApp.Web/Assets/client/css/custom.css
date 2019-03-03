@@ -1,0 +1,24 @@
+﻿.tag {
+    display: block;
+    float: left;
+}
+
+.tag li {
+    display: inline-block;
+    margin: 5px 6px;
+}
+.tag li a {
+    background: #9C9C9C;
+    text-decoration:none;
+    padding: 10px;
+    display: block;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -o-border-radius: 30px;
+}

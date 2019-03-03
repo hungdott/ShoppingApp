@@ -9,7 +9,7 @@
     <script type="text/javascript" src="~/Assets/client/js/jquery.flexisel.js"></script>
     <script src="/Assets/client/js/jquery.etalage.min.js"></script>
     <script>
-       
+
         jQuery(document).ready(function ($) {
             $("#flexiselDemo1").flexisel({
                 visibleItems: 5,
@@ -87,7 +87,19 @@
             </div>
             <h6>còn @Model.Quantity sản phẩm </h6>
             <p>@Model.Description</p>
+            <div class="tag">
+                <h5>Tag :</h5>
+                <ul class="tagList">
+                    @foreach (var tag in (IEnumerable<ShoppingApp.Web.Models.TagViewModel>)ViewBag.Tags)
+                    {
+                    <li><a href="/tag/@(tag.ID).html">@tag.Name</a></li>
+                    }
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
             <div class="share">
+              
                 <h5>Chia sẻ :</h5>
                 <ul class="share_nav">
                     <li><a href="#"><img src="~/Assets/client/images/facebook.png" title="facebook"></a></li>
@@ -100,7 +112,7 @@
         <div class="clearfix"> </div>
     </div>
     @{
-      var relatedProducts = (IEnumerable<ShoppingApp.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
+          var relatedProducts = (IEnumerable<ShoppingApp.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
     }
     <ul id="flexiselDemo1">
         @foreach (var product in relatedProducts)
