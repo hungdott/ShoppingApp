@@ -21,6 +21,7 @@ namespace ShoppingApp.Web.Mappings
       Mapper.CreateMap<ProductTag, ProductTagViewModel>();
       Mapper.CreateMap<Footer, FooterViewModel>();
       Mapper.CreateMap<Slide, SlideViewModel>();
+      Mapper.CreateMap<Page, PageViewModel>();
     }
   }
 }

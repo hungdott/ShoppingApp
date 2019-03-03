@@ -1,0 +1,16 @@
+﻿@model ShoppingApp.Web.Models.PageViewModel
+@{
+    ViewBag.Title =Model.Name;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+
+
+<div class="single_top">
+    <div class="single_grid">
+        <h4>@Model.Name</h4>
+        @Html.Raw(Model.Content)
+        <div class="clearfix"> </div>
+    </div>
+ 
+</div>
