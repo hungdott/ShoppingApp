@@ -84,8 +84,13 @@
     <Compile Include="Migrations\201903030211306_addforeginkey.Designer.cs">
       <DependentUpon>201903030211306_addforeginkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903030821185_contactdetail.cs" />
+    <Compile Include="Migrations\201903030821185_contactdetail.Designer.cs">
+      <DependentUpon>201903030821185_contactdetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
@@ -140,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903030211306_addforeginkey.resx">
       <DependentUpon>201903030211306_addforeginkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903030821185_contactdetail.resx">
+      <DependentUpon>201903030821185_contactdetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

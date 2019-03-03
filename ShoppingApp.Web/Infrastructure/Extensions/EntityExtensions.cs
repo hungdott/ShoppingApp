@@ -92,5 +92,6 @@ namespace ShoppingApp.Web.Infrastructure.Extensions
       product.Quantity = productVm.Quantity;
 
     }
+
   }
 }

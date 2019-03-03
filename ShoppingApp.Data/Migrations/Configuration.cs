@@ -23,6 +23,7 @@
       CreateUser(context);
       CreateSlide(context);
       CreatePage(context);
+      CreateContactDetail(context);
     }
     void CreateUser(ShoppingAppDbContext context)
     {
@@ -112,6 +113,26 @@
           Status=true
         };
         context.Pages.Add(page);
+        context.SaveChanges();
+      }
+    }
+    private void CreateContactDetail(ShoppingAppDbContext context)
+    {
+      if (context.ContactDetails.Count() == 0)
+      {
+        var contactDetail = new ContactDetail()
+        {
+          Name = "shop thời trang",
+         Address="Số 9 Phố Nhổn",
+         Email="hungdo99tt@gmail.com",
+         Lat= 21.0547507,
+         Lng= 105.731832,
+         Phone="0123456789",
+         WebSite="http://shoppingvui.com.vn",
+         Other="",
+          Status = true
+        };
+        context.ContactDetails.Add(contactDetail);
         context.SaveChanges();
       }
     }

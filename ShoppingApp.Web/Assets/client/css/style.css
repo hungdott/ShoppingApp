@@ -20,6 +20,9 @@ body a{
 	-ms-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 }
+div#map {
+    height: 400px;
+}
 .top-header{
 	background: #F97E76;
 	padding: 0.7em 0;
@@ -475,6 +478,7 @@ h5.latest-product{
 }
 .chain{
 	margin: 0 auto;
+    height: 300px;
 	padding: 3em 0;
 }
 .chain-grid span.star{
