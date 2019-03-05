@@ -201,10 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\FooterController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\SlideController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -244,6 +246,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\footers\footerEditController.js" />
+    <Content Include="app\components\footers\footerEditView.html" />
+    <Content Include="app\components\footers\footerView.html" />
+    <Content Include="app\components\footers\footerController.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
@@ -263,6 +269,13 @@
     <Content Include="app\components\product_categories\productCategoryAddView.html" />
     <Content Include="app\components\product_categories\ProductCategoryListController.js" />
     <Content Include="app\components\product_categories\ProductCategoryListView.html" />
+    <Content Include="app\components\slides\slideAddController.js" />
+    <Content Include="app\components\slides\slideAddView.html" />
+    <Content Include="app\components\slides\slideEditController.js" />
+    <Content Include="app\components\slides\slideEditView.html" />
+    <Content Include="app\components\slides\slideListView.html" />
+    <Content Include="app\components\slides\slideListController.js" />
+    <Content Include="app\components\slides\slides.module.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
     <Content Include="app\shared\filers\statusFilter.js" />
@@ -4967,6 +4980,7 @@
     <Content Include="Assets\admin\libs\jquery-ui\README.md" />
     <Content Include="Assets\admin\libs\jquery-ui\ui\.DS_Store" />
     <Content Include="Assets\admin\libs\jquery-ui\ui\.jshintrc" />
+    <Content Include="app\components\footers\footers.module.js" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\Layouts.cshtml" />

@@ -1,0 +1,82 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Them moi slide
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li><a href="#">Slide</a></li>
+        <li><a ui-sref="products">Danh Sach Slide</a></li>
+        <li><a class="active">Them Moi</a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">them moi</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddSlide" role="form" ng-submit="AddSlide()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputTittle" class="col-sm-2 control-label">Tên Slide</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" required ng-maxlength="256" name="name" id="inputTittle" ng-model="slide.Name">
+                        <span ng-show="frmAddSlide.name.$invalid" class="has-error">phai nhap ten slide </span>
+                        <span ng-show="frmAddSlide.name.$error.maxlength" class="has-error">chi duoc nhap 256 ki tu </span>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label for="inputDes" class="col-sm-2 control-label">Mô tả</label>
+                    <div class="col-sm-10">
+                        <textarea type="text" class="form-control" id="inputMD" ckeditor="ckeditorOptions" name="description" ng-model="slide.Description"></textarea>
+                        <span ng-show="frmAddSlide.description.$error.maxlength" class="has-error">chi duoc nhap 500 ki tu </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDes" class="col-sm-2 control-label">hình ảnh </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-maxlength="256" id="inputDes" name="image" ng-model="slide.Image">
+                        <span ng-show="frmAddSlide.image.$error.maxlength" class="has-error">chi duoc nhap 256 ki tu </span>
+                        <span ng-show="frmAddSlide.image.$invalid" class="has-error">phai chon hình ảnh</span>
+                        <button class="btn btn-success" ng-click="ChooseImage()" type="button">Chon anh</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDes" class="col-sm-2 control-label">Thứ tự hiển thị </label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-maxlength="256" id="inputDes" name="displayOrder" ng-model="slide.DisplayOrder">
+                        <span ng-show="frmAddSlide.image.$invalid" class="has-error">phai nhap thứ tự hiển thị</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputMD" class="col-sm-2 control-label">Content </label>
+                    <div class="col-sm-10">
+                        <textarea type="text" class="form-control" id="inputMD" rows="20" name="content" ng-model="slide.Content"></textarea>
+                    </div>
+                </div>
+           
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="slide.Status" ng-checked="slide.Status"> Kich hoat
+                            </label>
+                        </div>
+                    </div>
+                </div>
+               
+                <
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-danger" ui-sref="slides" type="button">huy</button>
+                <button class="btn btn-success pull-right" ng-disabled="frmAddSlide.$invalid" type="submit">them moi</button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /.box -->
+</section><!-- /.content -->

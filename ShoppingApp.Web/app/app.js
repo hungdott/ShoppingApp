@@ -1,9 +1,13 @@
 ﻿/// <reference path="D:\asp.net\AppShopASP\Git\ShoppingApp.Web\Assets/admin/libs/angular/angular.js" />
 (function() {
     angular.module('shoppingapp',
-        ['shoppingapp.products',
+        [
+        'shoppingapp.products',
         'shoppingapp.product_categories',
-        'shoppingapp.common'])
+        'shoppingapp.footers',
+        'shoppingapp.slides',
+        'shoppingapp.common'
+        ])
         .config(config)
         .config(configAuthentication)
 

@@ -1,0 +1,39 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        cap nhat Footer
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+        <li><a href="#">Footer</a></li>
+        <li><a class="active">Cap nhat </a></li>
+
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">cap nhat Footer</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmUpdateFooter" role="form" ng-submit="UpdateFooter()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputMD" class="col-sm-2 control-label">Content</label>
+                    <div class="col-sm-10">
+                        
+                        <textarea type="text" class="form-control" id="inputMD" rows="20" name="content" ng-model="footer.Content" required></textarea>
+                        <span ng-show="frmUpdateFooter.name.$invalid" class="has-error">phai nhap Content </span>
+                       
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-danger" ui-sref="footers" type="button">huy</button>
+                <button class="btn btn-success pull-right" ng-disabled="frmUpdateFooter.$invalid" type="submit">luu</button>
+            </div><!-- /.box-footer -->
+        </form>
+    </div><!-- /.box -->
+</section><!-- /.content -->
