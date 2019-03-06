@@ -47,3 +47,19 @@
     border: none;
     outline: none;
 }
+.login-right input[type="password"] {
+    border: 1px solid #DDDBDB;
+    outline-color: #fb4d01;
+    width: 96%;
+    font-size: 0.9em;
+    padding: 10px;
+}
+i.fas.fa-sign-out-alt {
+    font-size: 24px;
+    color: #f97e76;
+}
+button {
+    border: none;
+    background: none;
+    padding: 0;
+}
