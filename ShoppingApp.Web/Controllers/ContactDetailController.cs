@@ -50,6 +50,7 @@ namespace ShoppingApp.Web.Controllers
         content = content.Replace("{{Message}}", feedbackViewModel.Message);
         var adminEmail = ConfigHelper.GetByKey("AdminEmail");
         MailHelper.SendMail(adminEmail, "Thông tin liên hệ từ website", content);
+
         feedbackViewModel.Name = "";
         feedbackViewModel.Message = "";
         feedbackViewModel.Email = "";
