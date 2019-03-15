@@ -8,6 +8,7 @@
 @section footerJS{
     <script type="text/javascript" src="~/Assets/client/js/jquery.flexisel.js"></script>
     <script src="/Assets/client/js/jquery.etalage.min.js"></script>
+
     <script>
 
         jQuery(document).ready(function ($) {
@@ -82,7 +83,7 @@
             <h4>@Model.Name</h4>
             <div class="cart-b">
                 <div class="left-n ">@(Model.Price == 0 ? "Liên hệ người bán" : Model.Price.ToString("N0"))</div>
-                <a class="now-get get-cart-in" href="/them-gio-hang/@Model.ID">Thêm vào giỏ</a>
+                <a class="now-get get-cart-in btnAddToCart" href="#" data-id="@Model.ID" >Thêm vào giỏ </a>
                 <div class="clearfix"></div>
             </div>
             <h6>còn @Model.Quantity sản phẩm </h6>

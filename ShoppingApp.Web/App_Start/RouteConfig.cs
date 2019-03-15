@@ -43,6 +43,22 @@ namespace ShoppingApp.Web
                 defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                 namespaces: new string[] { "ShoppingApp.Web.Controllers" }
             );
+
+            routes.MapRoute(
+             name: "Cart",
+             url: "gio-hang.html",
+             defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
+             namespaces: new string[] { "ShoppingApp.Web.Controllers" }
+            );
+
+
+            routes.MapRoute(
+             name: "Checkout",
+             url: "thanh-toan.html",
+             defaults: new { controller = "ShoppingCart", action = "Checkout", id = UrlParameter.Optional },
+             namespaces: new string[] { "ShoppingApp.Web.Controllers" }
+             );
+
             routes.MapRoute(
                 name: "Page",
                 url: "trang/{alias}.html",

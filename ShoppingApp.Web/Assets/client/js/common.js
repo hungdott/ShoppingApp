@@ -30,6 +30,14 @@
               .append("<a>" + item.label + "</a>")
               .appendTo(ul);
         };
+
+        $('.btnAddToCart').off('click').on('click', function (e) {
+            e.preventDefault()
+            console.log('fdfdsfdsfds')
+            var productId = parseInt($(this).data('id'))
+            cart.addItem(productId)
+        })
+
         $('#btnLogout').off('click').on('click', function (e) {
             e.preventDefault()
             $('#frmLogout').submit()

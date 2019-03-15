@@ -7,6 +7,7 @@ using System.Web;
 
 namespace ShoppingApp.Web.Models
 {
+    [Serializable]
   public class ProductViewModel
   {
 
