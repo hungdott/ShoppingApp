@@ -3,7 +3,10 @@
     angular.module('shoppingapp',
         [
         'shoppingapp.products',
+        'shoppingapp.application_groups',
         'shoppingapp.product_categories',
+        'shoppingapp.application_roles',
+        'shoppingapp.application_users',
         'shoppingapp.footers',
         'shoppingapp.slides',
         'shoppingapp.common'
