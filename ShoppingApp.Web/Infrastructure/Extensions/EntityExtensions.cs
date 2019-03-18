@@ -90,6 +90,7 @@ namespace ShoppingApp.Web.Infrastructure.Extensions
             product.Status = productVm.Status;
             product.Tags = productVm.Tags;
             product.Quantity = productVm.Quantity;
+            product.OriginalPrice = productVm.OriginalPrice;
 
         }
         public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackVm)

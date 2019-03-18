@@ -62,6 +62,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputDis" class="col-sm-2 control-label">Giá Nhập</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" required name="originalPrice" id="inputDis" ng-model="product.OriginalPrice">
+                        <span ng-show="frmUpdateProduct.originalPrice.$invalid" class="has-error">phai nhap gia</span>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="inputDis" class="col-sm-2 control-label">giá</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" required name="price" id="inputDis" ng-model="product.Price">
@@ -154,7 +161,7 @@
                 </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-danger" ui-sref="product_categories" type="button">huy</button>
+                <button class="btn btn-danger" ui-sref="products" type="button">huy</button>
                 <button class="btn btn-success pull-right" ng-disabled="frmUpdateProduct.$invalid" type="submit">luu</button>
             </div><!-- /.box-footer -->
         </form>

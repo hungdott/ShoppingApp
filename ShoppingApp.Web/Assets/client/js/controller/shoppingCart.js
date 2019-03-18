@@ -192,6 +192,9 @@
                 if (response.status) {
                     alert('Thêm sản phẩm thành công.');
                 }
+                else {
+                    alert(response.message);
+                }
             }
         });
     },

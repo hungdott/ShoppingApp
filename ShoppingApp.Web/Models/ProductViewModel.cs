@@ -50,6 +50,7 @@ namespace ShoppingApp.Web.Models
     public bool Status { get; set; }
     public string Tags { get; set; }
     public int Quantity { get; set; }
+    public decimal OriginalPrice { set; get; }
     public virtual ProductCategoryViewModel ProductCategory { set; get; }
   }
 }

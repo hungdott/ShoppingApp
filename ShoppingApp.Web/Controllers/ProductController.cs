@@ -32,7 +32,7 @@ namespace ShoppingApp.Web.Controllers
             ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProduct);
 
             List<string> listImages = new List<string>();
-            if (viewModel.MoreImages != null) {
+            if (viewModel.MoreImages != "null" && viewModel.MoreImages != null ) {
                 listImages = new JavaScriptSerializer().Deserialize<List<string>>(viewModel.MoreImages);
             }
            

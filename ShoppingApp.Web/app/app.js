@@ -9,6 +9,7 @@
         'shoppingapp.application_users',
         'shoppingapp.footers',
         'shoppingapp.slides',
+        'shoppingapp.statistics',
         'shoppingapp.common'
         ])
         .config(config)

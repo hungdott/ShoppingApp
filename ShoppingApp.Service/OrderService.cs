@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ShoppingApp.Data.Repositories;
 using ShoppingApp.Data.Infrastructure;
+using ShoppingApp.Common.ViewModels;
 
 namespace ShoppingApp.Service
 {
@@ -38,7 +39,7 @@ namespace ShoppingApp.Service
                     orderDeTail.OrderID = order.ID;
                     _orderDetailRepository.Add(orderDeTail);
                 }
-                _unitOfWork.Commit();
+
                 return true;
             }
             catch (Exception)
@@ -48,5 +49,7 @@ namespace ShoppingApp.Service
             }
             
         }
+
+       
     }
 }

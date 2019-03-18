@@ -1,13 +1,13 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Them moi san pham
+        Thêm mới sản phẩm
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
         <li><a href="#">Sản Phẩm</a></li>
-        <li><a ui-sref="products">Danh Sach Sản Phẩm</a></li>
-        <li><a class="active">Them Moi </a></li>
+        <li><a ui-sref="products">Danh Sách Sản Phẩm</a></li>
+        <li><a class="active">Thêm Mớii </a></li>
 
     </ol>
 </section>
@@ -16,13 +16,13 @@
     <!-- Default box -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">them moi</h3>
+            <h3 class="box-title">Thêm mới</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form class="form-horizontal" novalidate name="frmAddProduct" role="form" ng-submit="AddProduct()">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputTittle" class="col-sm-2 control-label">Ten san pham</label>
+                    <label for="inputTittle" class="col-sm-2 control-label">Tên sản phẩm</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" required ng-change="GetSeoTittle()" ng-maxlength="256" name="name" id="inputTittle" ng-model="product.Name">
                         <span ng-show="frmAddProduct.name.$invalid" class="has-error">phai nhap ten san pham </span>
@@ -38,14 +38,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDes" class="col-sm-2 control-label">Mo ta ngan </label>
+                    <label for="inputDes" class="col-sm-2 control-label">Mô tả ngắn </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="500" name="description" id="inputTittle" ng-model="product.Description">
                         <span ng-show="frmAddProduct.description.$error.maxlength" class="has-error">chi duoc nhap 256 ki tu </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDes" class="col-sm-2 control-label">Danh muc </label>
+                    <label for="inputDes" class="col-sm-2 control-label">Danh mục </label>
                     <div class="col-sm-10">
                         <select name="parentId" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
                             Danh muc goc
@@ -56,13 +56,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDis" class="col-sm-2 control-label">bảo hành</label>
+                    <label for="inputDis" class="col-sm-2 control-label">Bảo hành</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control"  name="warranty" id="inputDis" ng-model="product.Warranty">(tháng)
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputDis" class="col-sm-2 control-label">giá</label>
+                    <label for="inputDis" class="col-sm-2 control-label">Giá Nhập</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" required name="originalPrice" id="inputDis" ng-model="product.OriginalPrice">
+                        <span ng-show="frmAddProduct.originalPrice.$invalid" class="has-error">phai nhap gia</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDis" class="col-sm-2 control-label">Giá</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" required name="price" id="inputDis" ng-model="product.Price">
                         <span ng-show="frmAddProduct.price.$invalid" class="has-error">phai nhap gia</span>
