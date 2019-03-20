@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace ShoppingApp.Web.Controllers
 {
-
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

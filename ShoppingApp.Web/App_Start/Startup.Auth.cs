@@ -10,11 +10,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ShoppingApp.Data;
 using ShoppingApp.Model.Models;
+using System.Web.Http;
 
 [assembly: OwinStartup(typeof(ShoppingApp.Web.App_Start.Startup))]
 
 namespace ShoppingApp.Web.App_Start
 {
+   
     public partial class Startup
     {
         public void ConfigureAuth(IAppBuilder app)

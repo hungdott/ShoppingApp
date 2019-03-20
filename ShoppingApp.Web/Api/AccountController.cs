@@ -11,16 +11,15 @@ using System.Web.Http;
 
 namespace ShoppingApp.Web.Api
 {
+    
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
     private ApplicationSignInManager _signInManager;
     private ApplicationUserManager _userManager;
 
-    public AccountController()
-    {
-    }
 
+    
     public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
     {
       UserManager = userManager;
@@ -51,9 +50,9 @@ namespace ShoppingApp.Web.Api
       }
     }
 
+    [Route("Login")]
     [HttpPost]
     [AllowAnonymous]
-    [Route("login")]
     public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
     {
       if (!ModelState.IsValid)

@@ -11,9 +11,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 
 namespace ShoppingApp.Web.App_Start
 {
+
     public class ApplicationUserStore: Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>
   {
     public ApplicationUserStore(ShoppingAppDbContext context) : base(context)
@@ -64,6 +66,7 @@ namespace ShoppingApp.Web.App_Start
       }
     }
 
+    [Authorize(Roles = "Admin")]
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {

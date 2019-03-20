@@ -21,39 +21,39 @@
     {
       // This method will be called after migrating to the latest version.
       CreateUser(context);
-      CreateSlide(context);
-      CreatePage(context);
-      CreateContactDetail(context);
+      //CreateSlide(context);
+      //CreatePage(context);
+      //CreateContactDetail(context);
       //CreateFeedback(context);
     }
     void CreateUser(ShoppingAppDbContext context)
     {
-      //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShoppingAppDbContext()));
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShoppingAppDbContext()));
 
-      //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShoppingAppDbContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShoppingAppDbContext()));
 
-      //var user = new ApplicationUser()
-      //{
-      //    UserName = "hungdo",
-      //    Email = "hungdo99tt@gmail.com",
-      //    EmailConfirmed = true,
-      //    BirthDay = DateTime.Now,
-      //    FullName = "do dang hung"
+            var user = new ApplicationUser()
+            {
+                UserName = "hungdo2",
+                Email = "hungdo1999tt@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "hung do"
 
-      //};
+            };
 
-      //manager.Create(user, "123456$");
+            manager.Create(user, "123456$");
 
-      //if (!roleManager.Roles.Any())
-      //{
-      //    roleManager.Create(new IdentityRole { Name = "Admin" });
-      //    roleManager.Create(new IdentityRole { Name = "User" });
-      //}
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
 
-      //var adminUser = manager.FindByEmail("hungdo99tt@gmail.com");
+            var adminUser = manager.FindByEmail("hungdo1999tt@gmail.com");
 
-      //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
-    }
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+        }
     private void CreateFooter(ShoppingAppDbContext context)
     {
       if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId) == 0)

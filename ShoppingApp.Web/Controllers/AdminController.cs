@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ShoppingApp.Web.Controllers
 {
+    
     public class AdminController : Controller
     {
         // GET: Admin

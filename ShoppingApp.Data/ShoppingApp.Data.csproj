@@ -112,6 +112,10 @@
     <Compile Include="Migrations\201903170538531_RevenuesStatisticSP.Designer.cs">
       <DependentUpon>201903170538531_RevenuesStatisticSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903191629166_adduser.cs" />
+    <Compile Include="Migrations\201903191629166_adduser.Designer.cs">
+      <DependentUpon>201903191629166_adduser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -195,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903170538531_RevenuesStatisticSP.resx">
       <DependentUpon>201903170538531_RevenuesStatisticSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191629166_adduser.resx">
+      <DependentUpon>201903191629166_adduser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

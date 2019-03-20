@@ -10,7 +10,6 @@ using ShoppingApp.Service;
 namespace ShoppingApp.Web.Api
 {
     [RoutePrefix("api/home")]
-    [Authorize]
     public class HomeController : ApiControllerBase
     {
       IErrorService _errorService;
@@ -20,8 +19,10 @@ namespace ShoppingApp.Web.Api
       }
       
       [HttpGet]
+    [Authorize(Roles = "Admin")]
       [Route("TestMethod")]
-      public string TestMethod()
+        
+        public string TestMethod()
       {
       return "hello member";
       }
