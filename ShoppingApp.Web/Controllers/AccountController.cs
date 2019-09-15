@@ -60,6 +60,16 @@ namespace ShoppingApp.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
@@ -70,20 +80,48 @@ namespace ShoppingApp.Web.Controllers
                 ApplicationUser user = _userManager.Find(model.UserName, model.Password);
                 if (user != null)
                 {
-                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
-                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationProperties props = new AuthenticationProperties();
-                    props.IsPersistent = model.RememberMe;
-                    authenticationManager.SignIn(props, identity);
-                    if (Url.IsLocalUrl(returnUrl))
+                    //IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    //authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    //ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    //AuthenticationProperties props = new AuthenticationProperties();
+                    //props.IsPersistent = model.RememberMe;
+                    //authenticationManager.SignIn(props, identity);
+                    Session["user"] = model.UserName;
+                    Session["pass"] = model.Password;
+
+                    string num = "123456789";
+                    int len = num.Length;
+                    string otp = string.Empty;
+                    int otpdigit = 6;
+                    string finaldigit;
+                    int getIndex;
+                    for (int i = 0; i < otpdigit; i++)
                     {
-                        return Redirect(returnUrl);
+                        do
+                        {
+                            getIndex = new Random().Next(0, len);
+                            finaldigit = num.ToCharArray()[getIndex].ToString();
+                        } while (otp.IndexOf(finaldigit)!=-1);
+                        otp += finaldigit;
                     }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    Session["otp"] = Base64Encode(otp);
+                   
+                    string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/OtpCode.html"));
+                    content = content.Replace("{{OTP}}",otp+"SV");
+     
+
+
+                    MailHelper.SendMail(user.Email, "Mã OTP ShopVui", content);
+
+                    //if (Url.IsLocalUrl(returnUrl))
+                    //{
+                    //    return Redirect(returnUrl);
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
+                    return RedirectToAction("OTP", "Account");
                 }
                 else
                 {
@@ -152,6 +190,44 @@ namespace ShoppingApp.Web.Controllers
             }
                 return View();
             
+        }
+
+        [HttpGet]
+        public ActionResult OTP()
+        {
+            if (Session["otp"] == null)
+            {
+                return RedirectToAction("Register", "Account"); ;
+                     
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> OTP(OTPString model)
+        {
+            var otpBase64 = Session["otp"];
+            var decode = Base64Decode(otpBase64.ToString());
+            if (Session["otp"] == null)
+            {
+                return RedirectToAction("Register", "Account");
+            }
+            if (Session["otp"] != null &&(decode + "SV" == model.OTP))
+            {
+                ApplicationUser user = _userManager.Find(Session["user"].ToString(), Session["pass"].ToString());
+                IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                AuthenticationProperties props = new AuthenticationProperties();
+                //props.IsPersistent = model.RememberMe;
+                authenticationManager.SignIn(props, identity);
+                Session["otp"] = null;
+                Session["user"] = null;
+                Session["pass"] = null;
+                return RedirectToAction("Index", "Home");
+                
+
+            }
+            return View();
         }
         [HttpPost]
         [Authorize]

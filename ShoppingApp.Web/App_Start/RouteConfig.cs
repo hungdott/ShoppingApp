@@ -43,6 +43,12 @@ namespace ShoppingApp.Web
                 defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
                 namespaces: new string[] { "ShoppingApp.Web.Controllers" }
             );
+            routes.MapRoute(
+                name: "OTP",
+                url: "Register-otp.html",
+                defaults: new { controller = "Account", action = "OTP", id = UrlParameter.Optional },
+                namespaces: new string[] { "ShoppingApp.Web.Controllers" }
+            );
 
             routes.MapRoute(
              name: "Cart",
