@@ -3,10 +3,138 @@ namespace ShoppingApp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class recreate : DbMigration
+    public partial class reinitthreetime : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.ApplicationGroups",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 250),
+                        Description = c.String(maxLength: 250),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.ApplicationRoleGroups",
+                c => new
+                    {
+                        GroupId = c.Int(nullable: false),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.GroupId, t.RoleId })
+                .ForeignKey("dbo.ApplicationGroups", t => t.GroupId, cascadeDelete: true)
+                .ForeignKey("dbo.ApplicationRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.GroupId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.ApplicationRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                        Description = c.String(maxLength: 250),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ApplicationUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                        IdentityRole_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .ForeignKey("dbo.ApplicationRoles", t => t.IdentityRole_Id)
+                .Index(t => t.ApplicationUser_Id)
+                .Index(t => t.IdentityRole_Id);
+            
+            CreateTable(
+                "dbo.ApplicationUserGroups",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        GroupId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.GroupId })
+                .ForeignKey("dbo.ApplicationGroups", t => t.GroupId, cascadeDelete: true)
+                .ForeignKey("dbo.ApplicationUsers", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.GroupId);
+            
+            CreateTable(
+                "dbo.ApplicationUsers",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        FullName = c.String(maxLength: 256),
+                        Address = c.String(maxLength: 256),
+                        BirthDay = c.DateTime(),
+                        Email = c.String(),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ApplicationUserClaims",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.ApplicationUserLogins",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        LoginProvider = c.String(),
+                        ProviderKey = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.ContactDetails",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 250),
+                        Phone = c.String(maxLength: 50),
+                        Email = c.String(maxLength: 250),
+                        WebSite = c.String(maxLength: 250),
+                        Address = c.String(maxLength: 250),
+                        Other = c.String(),
+                        Lat = c.Double(),
+                        Lng = c.Double(),
+                        Status = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
             CreateTable(
                 "dbo.Errors",
                 c => new
@@ -15,6 +143,19 @@ namespace ShoppingApp.Data.Migrations
                         Message = c.String(),
                         StackTrace = c.String(),
                         CreatedDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Feedbacks",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 250),
+                        Email = c.String(nullable: false, maxLength: 250),
+                        Message = c.String(nullable: false, maxLength: 500),
+                        CreatedDate = c.DateTime(nullable: false),
+                        Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -58,7 +199,8 @@ namespace ShoppingApp.Data.Migrations
                     {
                         OrderID = c.Int(nullable: false),
                         ProductID = c.Int(nullable: false),
-                        Quantitty = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => new { t.OrderID, t.ProductID })
                 .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
@@ -81,8 +223,11 @@ namespace ShoppingApp.Data.Migrations
                         CreatedBy = c.String(),
                         PaymentStatus = c.String(),
                         Status = c.Boolean(nullable: false),
+                        CustomerId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.ApplicationUsers", t => t.CustomerId)
+                .Index(t => t.CustomerId);
             
             CreateTable(
                 "dbo.Products",
@@ -103,6 +248,8 @@ namespace ShoppingApp.Data.Migrations
                         HotFlag = c.Boolean(),
                         ViewCount = c.Int(),
                         Tags = c.String(),
+                        Quantity = c.Int(nullable: false),
+                        OriginalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CreatedDate = c.DateTime(),
                         CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
@@ -240,30 +387,6 @@ namespace ShoppingApp.Data.Migrations
                 .Index(t => t.TagID);
             
             CreateTable(
-                "dbo.IdentityRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.IdentityUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        IdentityRole_Id = c.String(maxLength: 128),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.IdentityRoles", t => t.IdentityRole_Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.IdentityRole_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.Slides",
                 c => new
                     {
@@ -307,55 +430,6 @@ namespace ShoppingApp.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.ApplicationUsers",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        FullName = c.String(maxLength: 256),
-                        Address = c.String(maxLength: 256),
-                        BirthDay = c.DateTime(),
-                        Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.IdentityUserClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
-                "dbo.IdentityUserLogins",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.VisitorStatistics",
                 c => new
                     {
@@ -369,10 +443,7 @@ namespace ShoppingApp.Data.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.IdentityUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
+            DropForeignKey("dbo.ApplicationUserRoles", "IdentityRole_Id", "dbo.ApplicationRoles");
             DropForeignKey("dbo.ProductTags", "TagID", "dbo.Tags");
             DropForeignKey("dbo.ProductTags", "ProductID", "dbo.Products");
             DropForeignKey("dbo.PostTags", "TagID", "dbo.Tags");
@@ -381,29 +452,37 @@ namespace ShoppingApp.Data.Migrations
             DropForeignKey("dbo.OrderDetails", "ProductID", "dbo.Products");
             DropForeignKey("dbo.Products", "CategoryID", "dbo.ProductCategories");
             DropForeignKey("dbo.OrderDetails", "OrderID", "dbo.Orders");
+            DropForeignKey("dbo.Orders", "CustomerId", "dbo.ApplicationUsers");
             DropForeignKey("dbo.Menus", "GroupID", "dbo.MenuGroups");
-            DropIndex("dbo.IdentityUserLogins", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserClaims", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
+            DropForeignKey("dbo.ApplicationUserGroups", "UserId", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserGroups", "GroupId", "dbo.ApplicationGroups");
+            DropForeignKey("dbo.ApplicationRoleGroups", "RoleId", "dbo.ApplicationRoles");
+            DropForeignKey("dbo.ApplicationRoleGroups", "GroupId", "dbo.ApplicationGroups");
             DropIndex("dbo.ProductTags", new[] { "TagID" });
             DropIndex("dbo.ProductTags", new[] { "ProductID" });
             DropIndex("dbo.PostTags", new[] { "TagID" });
             DropIndex("dbo.PostTags", new[] { "PostID" });
             DropIndex("dbo.Posts", new[] { "CategoryID" });
             DropIndex("dbo.Products", new[] { "CategoryID" });
+            DropIndex("dbo.Orders", new[] { "CustomerId" });
             DropIndex("dbo.OrderDetails", new[] { "ProductID" });
             DropIndex("dbo.OrderDetails", new[] { "OrderID" });
             DropIndex("dbo.Menus", new[] { "GroupID" });
+            DropIndex("dbo.ApplicationUserLogins", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.ApplicationUserClaims", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.ApplicationUserGroups", new[] { "GroupId" });
+            DropIndex("dbo.ApplicationUserGroups", new[] { "UserId" });
+            DropIndex("dbo.ApplicationUserRoles", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.ApplicationUserRoles", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.ApplicationRoleGroups", new[] { "RoleId" });
+            DropIndex("dbo.ApplicationRoleGroups", new[] { "GroupId" });
             DropTable("dbo.VisitorStatistics");
-            DropTable("dbo.IdentityUserLogins");
-            DropTable("dbo.IdentityUserClaims");
-            DropTable("dbo.ApplicationUsers");
             DropTable("dbo.SystemConfigs");
             DropTable("dbo.SupportOnlines");
             DropTable("dbo.Slides");
-            DropTable("dbo.IdentityUserRoles");
-            DropTable("dbo.IdentityRoles");
             DropTable("dbo.ProductTags");
             DropTable("dbo.Tags");
             DropTable("dbo.PostTags");
@@ -417,7 +496,17 @@ namespace ShoppingApp.Data.Migrations
             DropTable("dbo.Menus");
             DropTable("dbo.MenuGroups");
             DropTable("dbo.Footers");
+            DropTable("dbo.Feedbacks");
             DropTable("dbo.Errors");
+            DropTable("dbo.ContactDetails");
+            DropTable("dbo.ApplicationUserLogins");
+            DropTable("dbo.ApplicationUserClaims");
+            DropTable("dbo.ApplicationUsers");
+            DropTable("dbo.ApplicationUserGroups");
+            DropTable("dbo.ApplicationUserRoles");
+            DropTable("dbo.ApplicationRoles");
+            DropTable("dbo.ApplicationRoleGroups");
+            DropTable("dbo.ApplicationGroups");
         }
     }
 }

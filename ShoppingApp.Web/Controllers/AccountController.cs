@@ -203,6 +203,7 @@ namespace ShoppingApp.Web.Controllers
             return View();
         }
         [HttpPost]
+        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
         public async Task<ActionResult> OTP(OTPString model)
         {
             var otpBase64 = Session["otp"];

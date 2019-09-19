@@ -1,156 +1,23 @@
-﻿namespace ShoppingApp.Data.Migrations
+namespace ShoppingApp.Data.Migrations
 {
-  using Common;
-  using Microsoft.AspNet.Identity;
-  using Microsoft.AspNet.Identity.EntityFramework;
-  using Model.Models;
-  using System;
-  using System.Collections.Generic;
-  using System.Data.Entity;
-  using System.Data.Entity.Migrations;
-  using System.Linq;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
-  internal sealed class Configuration : DbMigrationsConfiguration<ShoppingApp.Data.ShoppingAppDbContext>
-  {
-    public Configuration()
+    internal sealed class Configuration : DbMigrationsConfiguration<ShoppingApp.Data.ShoppingAppDbContext>
     {
-      AutomaticMigrationsEnabled = true;
-    }
-
-    protected override void Seed(ShoppingApp.Data.ShoppingAppDbContext context)
-    {
-      // This method will be called after migrating to the latest version.
-      CreateUser(context);
-      //CreateSlide(context);
-      //CreatePage(context);
-      //CreateContactDetail(context);
-      //CreateFeedback(context);
-    }
-    void CreateUser(ShoppingAppDbContext context)
-    {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShoppingAppDbContext()));
-
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShoppingAppDbContext()));
-
-            var user = new ApplicationUser()
-            {
-                UserName = "hungdo2",
-                Email = "hungdo1999tt@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "hung do"
-
-            };
-
-            manager.Create(user, "123456$");
-
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
-
-            var adminUser = manager.FindByEmail("hungdo1999tt@gmail.com");
-
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
         }
-    private void CreateFooter(ShoppingAppDbContext context)
-    {
-      if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId) == 0)
-      {
 
-      }
-    }
-    private void CreateSlide(ShoppingAppDbContext context)
-    {
-      if (context.Slides.Count() == 0)
-      {
-        List<Slide> listSlide = new List<Slide>()
-                {
-                    new Slide() {
-                        Name ="Slide 1",
-                        DisplayOrder =1,
-                        Status =true,
-                        Url ="#",
-                        Image ="/Assets/client/images/bag.jpg",
-                        Content =@"	<h2>FLAT 50% 0FF</h2>
-                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
-                                <p>Lorem ipsum dolor sit amet, consectetur 
-                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et </ p >
-                        <span class=""on-get"">GET NOW</span>" },
-                    new Slide() {
-                        Name ="Slide 2",
-                        DisplayOrder =2,
-                        Status =true,
-                        Url ="#",
-                        Image ="/Assets/client/images/bag1.jpg",
-                    Content=@"<h2>FLAT 50% 0FF</h2>
-                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </ p >
-
-                                <span class=""on-get"">GET NOW</span>"},
-                };
-        context.Slides.AddRange(listSlide);
-        context.SaveChanges();
-      }
-    }
-
-    private void CreatePage(ShoppingAppDbContext context)
-    {
-      if (context.Pages.Count() == 0)
-      {
-        var page = new Page()
+        protected override void Seed(ShoppingApp.Data.ShoppingAppDbContext context)
         {
-          Name="Giới thiệu",
-          Alias = "gioi-thieu",
-          Content = @"Ra đời từ tháng 3/2015, với sứ mệnh trở thành nhà bán lẻ các sản phẩm công nghệ và điện máy hàng đầu Việt Nam, VinPro là thương hiệu chủ lực của công ty Cổ phần Dịch vụ Thương mại Tổng hợp Vincommerce – đơn vị ngành hàng bán lẻ của Tập đoàn Vingroup.
+            //  This method will be called after migrating to the latest version.
 
-          Với mục tiêu dẫn đầu xu hướng về công nghệ, hệ thống hàng Công nghệ - Điện máy Vinpro bao gồm chuỗi Trung tâm Công nghệ & Điện máy VinPro, nằm tại tất cả các trung tâm thương mại thuộc hệ thống Vincom. Với mô hình chuyên biệt, VinPro đáp ứng tối đa nhu cầu của khách hàng, vừa mang lại những trải nghiệm mới lạ, thú vị.
-
-          Nhận được sự hợp tác và hỗ trợ của tất cả các thương hiệu công nghệ - điện máy hàng đầu trên thế giới, 7 ngành hàng Điện thoại - Máy tính bảng - Máy tính xách tay - Điện tử - Điện lạnh - Điện gia dụng và Phụ kiện tại VinPro đảm bảo được cập nhật xu hướng và công nghệ mới nhất, với chất lượng chính hãng và giá cả hợp lý.
-
-          Hệ thống các Trung tâm VinPro liên tục được mở rộng trên khắp các vùng miền trong cả nước. Mục tiêu của VinPro đó là mang thế giới công nghệ thông minh tới từng người Việt, từng mái nhà Việt, giới thiệu các siêu phẩm công nghệ mới từ các thương hiệu công nghệ nổi tiếng và được ưa chuộng nhất trên thế giới.",
-          Status=true
-        };
-        context.Pages.Add(page);
-        context.SaveChanges();
-      }
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
+        }
     }
-    private void CreateContactDetail(ShoppingAppDbContext context)
-    {
-      if (context.ContactDetails.Count() == 0)
-      {
-        var contactDetail = new ContactDetail()
-        {
-          Name = "shop thời trang",
-         Address="Số 9 Phố Nhổn",
-         Email="hungdo99tt@gmail.com",
-         Lat= 21.0547507,
-         Lng= 105.731832,
-         Phone="0123456789",
-         WebSite="http://shoppingvui.com.vn",
-         Other="",
-          Status = true
-        };
-        context.ContactDetails.Add(contactDetail);
-        context.SaveChanges();
-      }
-    }
-    private void CreateFeedback(ShoppingAppDbContext context)
-    {
-      //var contactDetail = new FeedBack()
-      //{
-      //  Name = "shop thời trang",
-
-      //  Email = "hungdo99tt@gmail.com",
-      //  Message = "fdgfsgfdg",
-      //  Status = true
-      //};
-      //context.FeedBacks.Add(contactDetail);
-      //context.SaveChanges();
-    }
-
-
-  }
 }

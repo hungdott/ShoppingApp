@@ -7,13 +7,13 @@ namespace ShoppingApp.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class recreate : IMigrationMetadata
+    public sealed partial class reinitthreetime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(recreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(reinitthreetime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902151013032_recreate"; }
+            get { return "201909191719035_reinit three time"; }
         }
         
         string IMigrationMetadata.Source

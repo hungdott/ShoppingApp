@@ -64,57 +64,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201902151013032_recreate.cs" />
-    <Compile Include="Migrations\201902151013032_recreate.Designer.cs">
-      <DependentUpon>201902151013032_recreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902180940381_addAdmin.cs" />
-    <Compile Include="Migrations\201902180940381_addAdmin.Designer.cs">
-      <DependentUpon>201902180940381_addAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902201655295_createSlide.cs" />
-    <Compile Include="Migrations\201902201655295_createSlide.Designer.cs">
-      <DependentUpon>201902201655295_createSlide.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902271521526_updateProductTable.cs" />
-    <Compile Include="Migrations\201902271521526_updateProductTable.Designer.cs">
-      <DependentUpon>201902271521526_updateProductTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903030211306_addforeginkey.cs" />
-    <Compile Include="Migrations\201903030211306_addforeginkey.Designer.cs">
-      <DependentUpon>201903030211306_addforeginkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903030821185_contactdetail.cs" />
-    <Compile Include="Migrations\201903030821185_contactdetail.Designer.cs">
-      <DependentUpon>201903030821185_contactdetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903031403299_feedbacktable.cs" />
-    <Compile Include="Migrations\201903031403299_feedbacktable.Designer.cs">
-      <DependentUpon>201903031403299_feedbacktable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903100621156_AddCustomerId.cs" />
-    <Compile Include="Migrations\201903100621156_AddCustomerId.Designer.cs">
-      <DependentUpon>201903100621156_AddCustomerId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903151423449_renameTableIdentity.cs" />
-    <Compile Include="Migrations\201903151423449_renameTableIdentity.Designer.cs">
-      <DependentUpon>201903151423449_renameTableIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903151444293_addGroupUser.cs" />
-    <Compile Include="Migrations\201903151444293_addGroupUser.Designer.cs">
-      <DependentUpon>201903151444293_addGroupUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903170306483_changeOrderDetail.cs" />
-    <Compile Include="Migrations\201903170306483_changeOrderDetail.Designer.cs">
-      <DependentUpon>201903170306483_changeOrderDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903170538531_RevenuesStatisticSP.cs" />
-    <Compile Include="Migrations\201903170538531_RevenuesStatisticSP.Designer.cs">
-      <DependentUpon>201903170538531_RevenuesStatisticSP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903191629166_adduser.cs" />
-    <Compile Include="Migrations\201903191629166_adduser.Designer.cs">
-      <DependentUpon>201903191629166_adduser.cs</DependentUpon>
+    <Compile Include="Migrations\201909191719035_reinit three time.cs" />
+    <Compile Include="Migrations\201909191719035_reinit three time.Designer.cs">
+      <DependentUpon>201909191719035_reinit three time.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,44 +116,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902151013032_recreate.resx">
-      <DependentUpon>201902151013032_recreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902180940381_addAdmin.resx">
-      <DependentUpon>201902180940381_addAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902201655295_createSlide.resx">
-      <DependentUpon>201902201655295_createSlide.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902271521526_updateProductTable.resx">
-      <DependentUpon>201902271521526_updateProductTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903030211306_addforeginkey.resx">
-      <DependentUpon>201903030211306_addforeginkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903030821185_contactdetail.resx">
-      <DependentUpon>201903030821185_contactdetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903031403299_feedbacktable.resx">
-      <DependentUpon>201903031403299_feedbacktable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903100621156_AddCustomerId.resx">
-      <DependentUpon>201903100621156_AddCustomerId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903151423449_renameTableIdentity.resx">
-      <DependentUpon>201903151423449_renameTableIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903151444293_addGroupUser.resx">
-      <DependentUpon>201903151444293_addGroupUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903170306483_changeOrderDetail.resx">
-      <DependentUpon>201903170306483_changeOrderDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903170538531_RevenuesStatisticSP.resx">
-      <DependentUpon>201903170538531_RevenuesStatisticSP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903191629166_adduser.resx">
-      <DependentUpon>201903191629166_adduser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909191719035_reinit three time.resx">
+      <DependentUpon>201909191719035_reinit three time.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
