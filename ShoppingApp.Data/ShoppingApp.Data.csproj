@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201909191719035_reinit three time.Designer.cs">
       <DependentUpon>201909191719035_reinit three time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910010224442_configPage.cs" />
+    <Compile Include="Migrations\201910010224442_configPage.Designer.cs">
+      <DependentUpon>201910010224442_configPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -118,6 +122,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909191719035_reinit three time.resx">
       <DependentUpon>201909191719035_reinit three time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910010224442_configPage.resx">
+      <DependentUpon>201910010224442_configPage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
