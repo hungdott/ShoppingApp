@@ -22,10 +22,10 @@
         function AddProduct() {
             $scope.product.MoreImages = JSON.stringify($scope.moreImages)
             apiService.post('/api/product/create', $scope.product, function (result) {
-                notificationService.displaySuccess('da them moi thanh cong ' + result.data.Name)
+                notificationService.displaySuccess('da Thêm mới thanh cong ' + result.data.Name)
                 $state.go('products')
             }, function (err) {
-                notificationService.displayError('da them moi khong thanh cong')
+                notificationService.displayError('da Thêm mới khong thanh cong')
                 console.log('create failed.')
             })
         }
@@ -41,7 +41,10 @@
            
             var finder = new CKFinder()
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+                //$scope.product.Image = fileUrl
             }
             finder.popup()
         }

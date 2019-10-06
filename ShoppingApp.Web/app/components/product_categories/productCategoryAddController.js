@@ -16,10 +16,10 @@
         }
         function AddProductCategory() {
             apiService.post('/api/productcategory/create', $scope.productCategory, function (result) {
-                notificationService.displaySuccess('da them moi thanh cong '+result.data.Name)
+                notificationService.displaySuccess('da Thêm mới thanh cong '+result.data.Name)
                 $state.go('product_categories')
             }, function (err) {
-                notificationService.displayError('da them moi khong thanh cong')
+                notificationService.displayError('da Thêm mới khong thanh cong')
                 console.log('create failed.')
             })
         }

@@ -68,9 +68,9 @@
         }
         private void CreateUser(ShoppingAppDbContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShoppingAppDbContext()));
+            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShoppingAppDbContext()));
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShoppingAppDbContext()));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ShoppingAppDbContext()));
 
             //var user = new ApplicationUser()
             //{
@@ -81,7 +81,7 @@
             //    FullName = "hung do"
 
             //};
-            //if (manager.Users.Count(x => x.UserName == "hungdo") == 0)
+            //if (manager.Users.Count(x => x.UserName == "admin") == 0)
             //{
             //    manager.Create(user, "123654$");
 

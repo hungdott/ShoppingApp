@@ -92,7 +92,7 @@
                 <div class="form-group">
                     <label for="inputDes" class="col-sm-2 control-label">hình ảnh </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-maxlength="256" id="inputDes" name="image" ng-model="product.Image">
+                        <img ng-src="{{product.Image}}"  width="100" ng-model="product.Image" />
                         <span ng-show="frmAddProduct.image.$error.maxlength" class="has-error">chi duoc nhap 256 ki tu </span>
                         <span ng-show="frmAddProduct.image.$invalid" class="has-error">phai chon hình ảnh</span>
                         <button class="btn btn-success" ng-click="ChooseImage()" type="button">Chon anh</button>
@@ -162,7 +162,7 @@
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button class="btn btn-danger" ui-sref="product_categories" type="button">huy</button>
-                <button class="btn btn-success pull-right" ng-disabled="frmAddProduct.$invalid" type="submit">them moi</button>
+                <button class="btn btn-success pull-right" ng-disabled="frmAddProduct.$invalid" type="submit">Thêm mới</button>
             </div><!-- /.box-footer -->
         </form>
     </div><!-- /.box -->

@@ -13,6 +13,7 @@ namespace ShoppingApp.Web.Api
 {
     
     [RoutePrefix("api/account")]
+    [Authorize]
     public class AccountController : ApiController
     {
     private ApplicationSignInManager _signInManager;
@@ -53,7 +54,8 @@ namespace ShoppingApp.Web.Api
     [Route("Login")]
     [HttpPost]
     [AllowAnonymous]
-    public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
+    [Authorize(Roles = "Admin")]
+        public async Task<HttpResponseMessage> Login(HttpRequestMessage request, string userName, string password, bool rememberMe)
     {
       if (!ModelState.IsValid)
       {

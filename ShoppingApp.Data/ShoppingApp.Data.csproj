@@ -72,6 +72,14 @@
     <Compile Include="Migrations\201910010224442_configPage.Designer.cs">
       <DependentUpon>201910010224442_configPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910061525161_update_role.cs" />
+    <Compile Include="Migrations\201910061525161_update_role.Designer.cs">
+      <DependentUpon>201910061525161_update_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910061941368_update_orderdetai.cs" />
+    <Compile Include="Migrations\201910061941368_update_orderdetai.Designer.cs">
+      <DependentUpon>201910061941368_update_orderdetai.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -125,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910010224442_configPage.resx">
       <DependentUpon>201910010224442_configPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061525161_update_role.resx">
+      <DependentUpon>201910061525161_update_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061941368_update_orderdetai.resx">
+      <DependentUpon>201910061941368_update_orderdetai.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

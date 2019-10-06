@@ -13,6 +13,8 @@ namespace ShoppingApp.Service
     public interface IOrderService
     {
         bool Create(Order order,List<OrderDetail> orderDatails);
+        IEnumerable<OrderFullViewModel> GetAll();
+        IEnumerable<OrderFullViewModel> GetAll(string keyword);
     }
     public class OrderService : IOrderService
     {
@@ -50,6 +52,68 @@ namespace ShoppingApp.Service
             
         }
 
-       
+        public IEnumerable<OrderFullViewModel> GetAll()
+        {
+            try
+            {
+                var listOrderFull = new List<OrderFullViewModel>();
+
+                var listOrder = _orderRepository.GetAll();
+                if (listOrder.Count() > 0)
+                {
+                    foreach (var order in listOrder)
+                    {
+                        var orderFull = new OrderFullViewModel();
+                        orderFull.Order = order;
+                        orderFull.CreatedDate = order.CreatedDate;
+                        var listOrderDetail = _orderDetailRepository.GetAll().Where(x => x.OrderID == order.ID).ToList();
+                        orderFull.ListOrderDetail = listOrderDetail;
+                        listOrderFull.Add(orderFull);
+                    }
+                }
+               
+                return listOrderFull;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
+        }
+        public IEnumerable<OrderFullViewModel> GetAll(string keyword)
+        {
+            try
+            {
+                var listOrderFull = new List<OrderFullViewModel>();
+
+                var listOrder = _orderRepository.GetAll().ToList();
+                if (listOrder.Count() > 0)
+                {
+                    foreach (var order in listOrder)
+                    {
+                        var orderFull = new OrderFullViewModel();
+                        orderFull.Order = order;
+                        orderFull.CreatedDate = order.CreatedDate;
+                        var listOrderDetail = _orderDetailRepository.GetAll().Where(x => x.OrderID == order.ID).ToList();
+                        orderFull.ListOrderDetail = listOrderDetail;
+                        listOrderFull.Add(orderFull);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(keyword))
+                    return listOrderFull.Where(x => x.Order.CustomerName.Contains(keyword));
+                else
+                    return listOrderFull;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
+        }
+
+
     }
 }

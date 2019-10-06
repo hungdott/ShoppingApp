@@ -1,12 +1,12 @@
 ﻿/// <reference path="D:\asp.net\AppShopASP\Git\ShoppingApp.Web\Assets/admin/libs/angular/angular.js" />
 (function (app) {
-    app.controller('productListController', productListController)
-    productListController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$ngBootbox', '$filter']
-    function productListController($scope, apiService, notificationService, $state, $ngBootbox, $filter) {
-        $scope.products = []
+    app.controller('orderListController', orderListController)
+    orderListController.$inject = ['$scope', 'apiService', 'notificationService', '$state', '$ngBootbox', '$filter']
+    function orderListController($scope, apiService, notificationService, $state, $ngBootbox, $filter) {
+        $scope.orders = []
         $scope.page = 0
         $scope.pagesCount = 0
-        $scope.getProducts = getProducts
+        $scope.getOrders = getOrders
        
         $scope.keyword = ''
         $scope.search = search
@@ -18,13 +18,13 @@
 
         function selectAll() {
             if ($scope.isAll === false) {
-                angular.forEach($scope.products, function (item) {
+                angular.forEach($scope.orders, function (item) {
                     item.checked = true
                 })
                 $scope.isAll = true
             }
             else {
-                angular.forEach($scope.products, function (item) {
+                angular.forEach($scope.orders, function (item) {
                     item.checked = false
                 })
                 $scope.isAll = false
@@ -43,7 +43,7 @@
                 }
             }
             apiService.del('/api/product/deletemulti', config, function (result) {
-                $scope.getProducts()
+                $scope.getOrders()
                 notificationService.displaySuccess('Xóa thanh cong ' + result.data + ' ban ghi')
 
             }, function () {
@@ -51,7 +51,7 @@
             })
         }
 
-        $scope.$watch('products', function (n, o) {
+        $scope.$watch('orders', function (n, o) {
             var checked = $filter('filter')(n, { checked: true })
             if (checked.length) {
                 $scope.selected = checked
@@ -63,10 +63,10 @@
         }, true)
 
         function search() {
-            getProducts(null, true)
+            getOrders(null, true)
         }
 
-        function getProducts(page, isSerch= false) {
+        function getOrders(page, isSerch= false) {
             page = page || 0
 
             var config = {
@@ -76,7 +76,7 @@
                     pageSize: 4
                 }
             }
-            apiService.get('/api/product/getall', config, function (result) {
+            apiService.get('/api/order/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     //notificationService.displayWarning('Không có bản ghi nào được tìm thấy')
                 }
@@ -88,7 +88,8 @@
                         notificationService.displaySuccess('Tìm thấy: ' + result.data.TotalCount + ' bản ghi')
                 }
 
-                $scope.products = result.data.Item
+                $scope.orders = result.data.Item
+                console.log($scope.orders,'order')
                 $scope.page = result.data.Page
                 $scope.pagesCount = result.data.TotalPages
                 $scope.totalCount = result.data.TotalCount
@@ -114,8 +115,8 @@
             })
         }
        
-        $scope.getProducts()
+        $scope.getOrders()
 
 
     }
-})(angular.module('shoppingapp.products'))
+})(angular.module('shoppingapp.orders'))

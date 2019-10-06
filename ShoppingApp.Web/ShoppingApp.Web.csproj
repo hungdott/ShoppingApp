@@ -211,6 +211,7 @@
     <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\FooterController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
@@ -295,6 +296,9 @@
     <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\login\loginController.js" />
     <Content Include="app\components\login\loginView.html" />
+    <Content Include="app\components\orders\orders.module.js" />
+    <Content Include="app\components\orders\orderListController.js" />
+    <Content Include="app\components\orders\orderListView.html" />
     <Content Include="app\components\products\products.module.js" />
     <Content Include="app\components\products\productAddController.js" />
     <Content Include="app\components\products\productAddView.html" />
@@ -5009,6 +5013,7 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\client\css\custom.css" />
+    <Content Include="Assets\client\images\logoshop.jpg" />
     <Content Include="Assets\client\js\common.js" />
     <Content Include="Assets\client\css\bootstrap.css" />
     <Content Include="Assets\client\css\etalage.css" />
@@ -5090,7 +5095,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\orders\" />
     <Folder Include="app\components\roles\" />
     <Folder Include="app\components\users\" />
     <Folder Include="app\shared\footer\" />

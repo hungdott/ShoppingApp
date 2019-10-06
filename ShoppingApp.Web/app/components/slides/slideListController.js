@@ -44,10 +44,10 @@
             }
             apiService.del('/api/slide/deletemulti', config, function (result) {
                 $scope.getSlides()
-                notificationService.displaySuccess('xoa thanh cong ' + result.data + ' ban ghi')
+                notificationService.displaySuccess('Xóa thanh cong ' + result.data + ' ban ghi')
 
             }, function () {
-                notificationService.displayError('xoa khong thanh cong')
+                notificationService.displayError('Xóa khong thanh cong')
             })
         }
 
@@ -63,10 +63,10 @@
         }, true)
 
         function search() {
-            getSlides()
+            getSlides(null, true)
         }
 
-        function getSlides(page) {
+        function getSlides(page, isSerch = false) {
             page = page || 0
 
             var config = {
@@ -78,10 +78,10 @@
             }
             apiService.get('/api/slide/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào được tìm thấy')
+                    //notificationService.displayWarning('Không có bản ghi nào được tìm thấy')
                 }
                 else {
-                    if ($scope.keyword.length == 0) {
+                    if ($scope.keyword.length == 0 && isSerch == true) {
                         notificationService.displayWarning('nhập vào ô tìm kiếm')
                     }
                     else
@@ -98,17 +98,17 @@
         }
 
         function deleteSlide(id) {
-            $ngBootbox.confirm('ban co chac muon xoa').then(function () {
+            $ngBootbox.confirm('ban co chac muon Xóa').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
                 apiService.del('/api/slide/delete', config, function (result) {
-                    notificationService.displaySuccess('xoa thanh cong ban ghi ' + result.data.Name)
+                    notificationService.displaySuccess('Xóa thanh cong ban ghi ' + result.data.Name)
                     $scope.getSlides()
                 }, function (err) {
-                    notificationService.displayError('xoa khong thanh cong')
+                    notificationService.displayError('Xóa khong thanh cong')
                 })
 
             })

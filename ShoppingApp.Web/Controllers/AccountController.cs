@@ -6,6 +6,7 @@ using Microsoft.Owin.Security;
 using ShoppingApp.Common;
 using ShoppingApp.Data;
 using ShoppingApp.Model.Models;
+using ShoppingApp.Service;
 using ShoppingApp.Web.App_Start;
 using ShoppingApp.Web.Models;
 using System;
@@ -23,11 +24,17 @@ namespace ShoppingApp.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        private IApplicationGroupService _appGroupService;
+        private IApplicationRoleService _appRoleService;
+        public AccountController(ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager,
+             IApplicationGroupService appGroupService,
+            IApplicationRoleService appRoleService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _appRoleService = appRoleService;
+            _appGroupService = appGroupService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -180,8 +187,24 @@ namespace ShoppingApp.Web.Controllers
                     string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/newuser.html"));
                     content = content.Replace("{{UserName}}", adminUser.FullName);
                     content = content.Replace("{{Link}}",ConfigHelper.GetByKey("CurrentLink")+"dang-nhap.html");
-                
-                  
+
+                    var listAppUserGroup = new List<ApplicationUserGroup>();
+                    
+                        listAppUserGroup.Add(new ApplicationUserGroup()
+                        {
+                            GroupId = 2,
+                            UserId = user.Id
+                        });
+                        //add role to user
+                        var listRole = _appRoleService.GetListRoleByGroupId(2);
+                        foreach (var role in listRole)
+                        {
+                            await _userManager.RemoveFromRoleAsync(user.Id, role.Name);
+                            await _userManager.AddToRoleAsync(user.Id, role.Name);
+                        }
+                    
+                    _appGroupService.AddUserToGroups(listAppUserGroup, user.Id);
+                    _appGroupService.Save();
                     MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
                     ViewData["SuccessMsg"] = "Đăng ký thành công";
                 }

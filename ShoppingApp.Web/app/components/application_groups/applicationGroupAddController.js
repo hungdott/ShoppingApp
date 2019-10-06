@@ -27,10 +27,13 @@
             notificationService.displayErrorValidation(response);
         }
         function loadRoles() {
+            
             apiService.get('/api/applicationRole/getlistall',
                 null,
                 function (response) {
+                   
                     $scope.roles = response.data;
+                    console.log($scope.roles,'roles')
                 }, function (response) {
                     notificationService.displayError('Không tải được danh sách quyền.');
                 });

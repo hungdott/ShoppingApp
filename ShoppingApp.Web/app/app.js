@@ -10,6 +10,7 @@
         'shoppingapp.footers',
         'shoppingapp.slides',
         'shoppingapp.statistics',
+        'shoppingapp.orders',
         'shoppingapp.common'
         ])
         .config(config)

@@ -43,10 +43,10 @@
             }
             apiService.del('/api/productcategory/deletemulti', config, function (result) {
                 $scope.getProductCategories()
-                notificationService.displaySuccess('xoa thanh cong ' + result.data + ' ban ghi')
+                notificationService.displaySuccess('Xóa thanh cong ' + result.data + ' ban ghi')
 
             }, function () {
-                notificationService.displayError('xoa khong thanh cong')
+                notificationService.displayError('Xóa khong thanh cong')
             })
         }
 
@@ -62,12 +62,12 @@
         }, true)
 
         function search() {
-            getProductCategories()
+            getProductCategories(null,true)
         }
 
-        function getProductCategories(page) {
+        function getProductCategories(page,isSerch=false) {
             page = page || 0
-
+            debugger
             var config = {
                 params: {
                     keyword:$scope.keyword,
@@ -77,10 +77,11 @@
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào được tìm thấy')
+                    //notificationService.displayWarning('Không có bản ghi nào được tìm thấy')
                 }
                 else {
-                    if ($scope.keyword.length == 0) {
+                    if ($scope.keyword.length == 0 && isSerch == true) {
+                        debugger
                         notificationService.displayWarning('nhập vào ô tìm kiếm')
                     }
                     else
@@ -98,17 +99,17 @@
 
         $scope.getProductCategories()
         function deleteProductCategory(id) {
-            $ngBootbox.confirm('ban co chac muon xoa').then(function () {
+            $ngBootbox.confirm('ban co chac muon Xóa').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
                 apiService.del('/api/productcategory/delete', config, function (result) {
-                    notificationService.displaySuccess('xoa thanh cong ban ghi ' + result.data.Name)
+                    notificationService.displaySuccess('Xóa thanh cong ban ghi ' + result.data.Name)
                     $scope.getProductCategories()   
                 }, function (err) {
-                    notificationService.displayError('xoa khong thanh cong')
+                    notificationService.displayError('Xóa khong thanh cong')
                 })
 
             })

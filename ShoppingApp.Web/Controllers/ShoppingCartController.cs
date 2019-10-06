@@ -85,8 +85,11 @@ namespace ShoppingApp.Web.Controllers
             foreach (var item in cart)
             {
                 var detail = new OrderDetail();
+                detail.OrderID = orderNew.ID;
                 detail.ProductID = item.ProductId;
                 detail.Quantity = item.Quantity;
+                detail.ProductName = item.Product.Name;
+                detail.ProductImg = item.Product.Image;
                 detail.Price = item.Product.Price;
                 orderDetails.Add(detail);
                 isEnough = _productService.SellProduct(item.ProductId, item.Quantity);

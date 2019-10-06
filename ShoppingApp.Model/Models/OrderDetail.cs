@@ -15,6 +15,8 @@ namespace ShoppingApp.Model.Models
         public int ProductID { set; get; }
 
         public int Quantity { set; get; }
+        public string ProductName { set; get; }
+        public string ProductImg { set; get; }
 
         public decimal Price { set; get; }
 
