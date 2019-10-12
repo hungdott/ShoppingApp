@@ -56,6 +56,8 @@ namespace ShoppingApp.Service
         {
             try
             {
+
+               
                 var listOrderFull = new List<OrderFullViewModel>();
 
                 var listOrder = _orderRepository.GetAll();
@@ -85,26 +87,36 @@ namespace ShoppingApp.Service
         {
             try
             {
-                var listOrderFull = new List<OrderFullViewModel>();
+                var query = from od in _orderRepository.GetAll()                             
+                            select new OrderFullViewModel
+                            {
+                                CreatedDate = od.CreatedDate,
+                                Order = od,
+                                ListOrderDetail = (from ordt in _orderDetailRepository.GetAll()
+                                                   where ordt.OrderID == od.ID
+                                                   select ordt).ToList()
+                            };
+                var listOrderFull = query.ToList();
+                //var listOrderFull = new List<OrderFullViewModel>();
 
-                var listOrder = _orderRepository.GetAll().ToList();
-                if (listOrder.Count() > 0)
-                {
-                    foreach (var order in listOrder)
-                    {
-                        var orderFull = new OrderFullViewModel();
-                        orderFull.Order = order;
-                        orderFull.CreatedDate = order.CreatedDate;
-                        var listOrderDetail = _orderDetailRepository.GetAll().Where(x => x.OrderID == order.ID).ToList();
-                        orderFull.ListOrderDetail = listOrderDetail;
-                        listOrderFull.Add(orderFull);
-                    }
-                }
+                //var listOrder = _orderRepository.GetAll().ToList();
+                //if (listOrder.Count() > 0)
+                //{
+                //    foreach (var order in listOrder)
+                //    {
+                //        var orderFull = new OrderFullViewModel();
+                //        orderFull.Order = order;
+                //        orderFull.CreatedDate = order.CreatedDate;
+                //        var listOrderDetail = _orderDetailRepository.GetAll().Where(x => x.OrderID == order.ID).ToList();
+                //        orderFull.ListOrderDetail = listOrderDetail;
+                //        listOrderFull.Add(orderFull);
+                //    }
+                //}
 
                 if (!string.IsNullOrEmpty(keyword))
                     return listOrderFull.Where(x => x.Order.CustomerName.Contains(keyword));
                 else
-                    return listOrderFull;
+                    return listOrderFull.AsQueryable();
             }
             catch (Exception ex)
             {

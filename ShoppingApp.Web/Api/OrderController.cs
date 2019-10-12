@@ -41,14 +41,15 @@ namespace ShoppingApp.Web.Api
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
-                var responseData = query.ToList().AsEnumerable();
+                var responseData = Mapper.Map<IEnumerable<ShoppingApp.Common.ViewModels.OrderFullViewModel>, IEnumerable<ShoppingApp.Common.ViewModels.OrderFullViewModel>>(query);
 
-                var paginationSet = new PaginationSet<ShoppingApp.Common.ViewModels.OrderFullViewModel>()
+                var paginationSet = new PaginationList<ShoppingApp.Common.ViewModels.OrderFullViewModel>()
                 {
                     Item = responseData,
                     Page = page,
                     TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                    Items = model.ToList()
                 };
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;

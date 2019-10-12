@@ -15,6 +15,14 @@
         $scope.deleteMultiple = deleteMultiple
         $scope.isAll = false
 
+        
+        var config = {
+            params: {
+                keyword: $scope.keyword,
+                page: 1,
+                pageSize: 4
+            }
+        }
 
         function selectAll() {
             if ($scope.isAll === false) {
@@ -64,7 +72,17 @@
 
         function search() {
             getOrders(null, true)
+           
         }
+        //column
+        $scope.orderColumns = [
+            {
+                field: "",
+                title: "Tên khách hàng",
+                width: "50px",
+                template: "{{this.dataItem.Order.CustomerName}}"
+            }]
+       
 
         function getOrders(page, isSerch= false) {
             page = page || 0
@@ -88,7 +106,7 @@
                         notificationService.displaySuccess('Tìm thấy: ' + result.data.TotalCount + ' bản ghi')
                 }
 
-                $scope.orders = result.data.Item
+                $scope.orders = result.data.Items
                 console.log($scope.orders,'order')
                 $scope.page = result.data.Page
                 $scope.pagesCount = result.data.TotalPages
@@ -115,7 +133,7 @@
             })
         }
        
-        $scope.getOrders()
+        getOrders()
 
 
     }

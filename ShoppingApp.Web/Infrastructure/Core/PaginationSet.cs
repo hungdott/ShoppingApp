@@ -21,6 +21,11 @@ namespace ShoppingApp.Web.Infrastructure.Core
     public int TotalCount { set; get; }
     public int MaxPage { set; get; }
     public IEnumerable<T> Item { set; get; }
+    
 
   }
+    public class PaginationList<T> : PaginationSet<T>
+    {
+        public List<T> Items { set; get; }
+    }
 }
